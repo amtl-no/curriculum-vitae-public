@@ -15,7 +15,7 @@ on: # yamllint disable-line rule:truthy
 
 jobs:
   yamllint:
-    name: 'Lint ${{ matrix.folder }}'
+    name: 'Lint ${{ matrix.target }}'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
