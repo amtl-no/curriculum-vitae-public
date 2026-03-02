@@ -94,8 +94,7 @@ experience:
         - ~
       en: 
         - ~
-
-  - id: ffi_permanent
+  - id: ffi
     title:
       nb: Forsker
       en: Scientific Researcher
@@ -114,7 +113,6 @@ experience:
         - ~
       en: 
         - ~
-        
   - id: ffi_summer_2017
     title:
       nb: Sommerstudent
@@ -134,7 +132,6 @@ experience:
         - ~
       en: 
         - ~
-
   - id: ffi_summer_2016
     title:
       nb: Sommerstudent
@@ -154,7 +151,6 @@ experience:
         - ~
       en: 
         - ~
-
   - id: posten
     title:
       nb: Sesongvikar
@@ -193,7 +189,6 @@ education:
     details:
       nb: ~
       en: ~
-
   - id: vgs
     degree:
       nb: Videregående skole
@@ -329,9 +324,3 @@ extracurricular:
         Awarded for conducting the best natural science experiment
     visible: true
       
-    
-     
-
-    
-
-
