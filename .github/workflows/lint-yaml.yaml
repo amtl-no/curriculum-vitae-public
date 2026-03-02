@@ -1,5 +1,8 @@
-# SPDX-License-Identifier: Apache-2.0
+%YAML 1.2
+# yamllint disable rule:line-length
+# SPDX-License-Identifier: CC-BY-4.0
 # SPDX-FileCopyrightText: 2026 Arne Magnus Tveita Løken <212174338+amtl-no@users.noreply.github.com>
+# yamllint enable rule:line-length
 ---
 name: "GitHub Actions Yaml linting"
 on: # yamllint disable-line rule:truthy 
@@ -7,17 +10,23 @@ on: # yamllint disable-line rule:truthy
     paths:
       - 'data/**.yaml'
       - '.github/workflows/**.yaml'
+  workflow_dispatch: # yamllint disable-line rule:truthy
 
 jobs:
   yamllint:
-    name: "Yamllint"
+    name: "Lint ${{ matrix.folder }}"
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    matrix:
+      folder: :["data", ".github/workflows"]
+
     steps:
       - name: "Checkout"
         uses: actions/checkout@v4
-      - name: "Yamllint"
+      - name: "Yamllint ${{ matrix.folder }}"
         uses: karancode/yamllint-github-action@master
         with:
-          yamllint_file_or_dir: "data"
+          yamllint_file_or_dir: "${{ matrix.folder }}"
           yamllint_strict: true
           yamllint_comment: false
