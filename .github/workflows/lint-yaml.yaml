@@ -25,9 +25,9 @@ jobs:
     steps:
       - name: 'Checkout'
         uses: actions/checkout@v4
-      - name: 'Yamllint ${{ matrix.folder }}'
+      - name: 'Yamllint ${{ matrix.target }}'
         uses: karancode/yamllint-github-action@master
         with:
-          yamllint_file_or_dir: '${{ matrix.folder }}'
+          yamllint_file_or_dir: '${{ matrix.target }}'
           yamllint_strict: true
           yamllint_comment: false
