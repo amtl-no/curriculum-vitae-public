@@ -16,18 +16,18 @@ rules:
   document-end:
     present: false
   document-start:
-    present: false
+    present: true
   empty-lines: enable
   empty-values: disable
   hyphens: enable
   indentation:
     spaces: 2
-    indent-sequences: false
-    check-multi-line-strings: false
+    indent-sequences: true
+    check-multi-line-strings: true
   key-duplicates: enable
   key-ordering: disable
   line-length:
-    max: 120
+    max: 79
     allow-non-breakable-words: true
     allow-non-breakable-inline-mappings: true
   new-line-at-end-of-file: enable
@@ -37,4 +37,4 @@ rules:
     quote-type: single
     required: false
   trailing-spaces: enable
-  truthy: disable
+  truthy: enable

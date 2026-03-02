@@ -1,4 +1,6 @@
 %YAML 1.2
+# SPDX-License-Identifier: CC-BY-4.0
+# SPDX-FileCopyrightText: 2026 Arne Magnus Tveita Løken <212174338+amtl-no@users.noreply.github.com>
 ---
 meta:
   languages: [nb, en]
@@ -92,7 +94,7 @@ experience:
     bullets:
       nb:
         - ~
-      en: 
+      en:
         - ~
   - id: ffi
     title:
@@ -232,16 +234,16 @@ skills:
       nb: Avansert
       en: Advanced
     items:
-    - Python
-    - LaTeX
-    - SQL
-    - YAML
-    - XML
-    - XPath
-    - DAX
-    - M
-    - Git
-    - Power BI
+      - Python
+      - LaTeX
+      - SQL
+      - YAML
+      - XML
+      - XPath
+      - DAX
+      - M
+      - Git
+      - Power BI
   - category:
       nb: Mellomnivå
       en: Intermediate
