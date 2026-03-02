@@ -1,0 +1,22 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 Arne Magnus Tveita Løken <212174338+amtl-no@users.noreply.github.com>
+---
+name: "GitHub Actions Yaml linting"
+on: # yamllint disable-line rule:truthy 
+  push:
+    paths:
+      - 'data/**.yaml'
+
+jobs:
+  yamllint:
+    name: "Yamllint"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v4
+      - name: "Yamllint"
+        uses: karancode/yamllint-github-action@master
+        with:
+          yamllint_file_or_dir: "data"
+          yamllint_strict: true
+          yamllint_comment: false
