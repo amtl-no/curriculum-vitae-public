@@ -20,7 +20,7 @@ I take the security of this automation pipeline and my personal data seriously. 
 If you discover a vulnerability in the rendering logic, the CI/CD pipeline, or potential data leaks in the public builds, please report it by:
 
 1. Opening a **GitHub Security Advisory** (if applicable) or,
-2. Contacting me directly via the contact information listed on my [LinkedIn profile](https://linkedin.com/in/((( cv.contact.linkedin )))).
+2. Contacting me via the anonymized GitHub email address associated with this account: `212174338+amtl-no@users.noreply.github.com`
 
 I will aim to acknowledge the report and initiate a fix via Dependabot or manual patch within a reasonable timeframe.
 
