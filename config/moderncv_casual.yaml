@@ -1,0 +1,39 @@
+%YAML 1.2
+# yamllint disable rule:line-length
+# SPDX-License-Identifier: CC-BY-4.0
+# SPDX-FileCopyrightText: 2026 Arne Magnus Tveita Løken <212174338+amtl-no@users.noreply.github.com>
+# yamllint enable rule:line-length
+---
+meta:
+  license:
+    spdx: CC-BY-4.0
+  description: Moderncv casual theme configuration
+
+template: moderncv/cv.tex.j2
+
+documentclass: 
+  name: moderncv
+  options:
+    - a4paper
+    - 11pt
+
+packages:
+  - name: geometry
+    options:
+      scale: '0.86'
+  - name: fontenc
+    options:
+      - T1
+  - name: inputenc
+    options:
+      - utf8
+  - name: babel
+    options:
+      lang: true
+  - name: csquotes
+  - name: microtype
+
+commands:
+  - \recomputelengths
+  - \moderncvtheme[blue]{casual}
+  - \patchcmd{\makeletterclosing}{[3em]}{[1em]}{}{}

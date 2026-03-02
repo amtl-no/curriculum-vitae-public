@@ -26,14 +26,58 @@ meta:
   repository: ~
 
 contact:
-  name: Arne Magnus Tveita Løken
-  linkedin: arne-magnus-tveita-loken
-  github: amtl-no
-  gitlab: amtl-no
+  name:
+    given: Arne Magnus
+    middle: Tveita
+    family: Løken
   website: amtl.no
-  email: ~
-  address: ~
-  phone: ~
+  email: 
+    value: ~
+    visible: true
+    secret: true
+  phone:
+    value: ~
+    visible: true
+    secret: true
+  socials:  
+    linkedin: 
+      handle: arne-magnus-tveita-loken
+      visible: true
+      secret: false
+    github: 
+      handle: amtl-no
+      visible: true
+      secret: false
+    gitlab: 
+      handle: amtl-no
+      visible: true
+      secret: false
+    signal:
+      handle: ~
+      visible: true
+      secret: true
+    threema:
+      handle: ~
+      visible: true
+      secret: true
+  address:
+    visible: false
+    street:
+      value: ~
+      secret: true
+    city:
+      value: ~
+      secret: true
+    postcode:
+      value: ~
+      secret: true
+    country:
+      nb: Norge
+      en: Norway
+  birthday:
+    year: 1994
+    month: 5
+    day: 31
 
 profile:
   nb: ~
@@ -191,8 +235,14 @@ education:
       year: 2018
       month: 6
     details:
-      nb: ~
-      en: ~
+      nb: >-
+        Retning: Teknisk fysikk.
+        Masteroppgave: Simulering av partikkeltransport i hav- og luftsystemer.
+        Benyttet Python, C/C++ og Fortran i egenutviklet beregningspipeline.
+      en: >-
+        Specialisation: Applied Physics.
+        Thesis: Simulation of particle transport in oceanic and atmospheric systems.
+        Developed custom computation pipeline in Python, C/C++ and Fortran.
   - id: vgs
     degree:
       nb: Videregående skole
@@ -218,42 +268,107 @@ linguistics:
     level:
       nb: Morsmål
       en: Native
+    comment:
+      nb: ~
+      en: ~
   - language:
       nb: Engelsk
       en: English
     level:
       nb: Flytende
       en: Fluent
+    comment:
+      nb: ~
+      en: ~
   - language:
       nb: Fransk
       en: French
     level:
       nb: Grunnleggende
       en: Basic
+    comment:
+      nb: ~
+      en: ~
 
 skills:
-  - category:
-      nb: Avansert
-      en: Advanced
-    items:
-      - Python
-      - LaTeX
-      - SQL
-      - YAML
-      - XML
-      - XPath
-      - DAX
-      - M
-      - Git
-      - Power BI
-  - category:
-      nb: Mellomnivå
-      en: Intermediate
-    items:
-      - C++
-      - Fortran
-      - Matlab
-      - Jinja2
+  - name: Python
+    level: 5
+    years: 10
+    comment:
+      nb: ~
+      en: ~
+  - name: LaTeX
+    level: 5
+    years: 10
+    comment:
+      nb: ~
+      en: ~
+  - name: Git
+    level: 4
+    years: 10
+    comment:
+      nb: ~
+      en: ~
+  - name: C++
+    level: 4
+    years: 6
+    comment:
+      nb: Egenutviklede simuleringer ved FFI
+      en: In-house simulations at FFI
+  - name: XML/XPath
+    level: 5
+    years: 2
+    comment:
+      nb: Nasjonal XPath-validator
+      en: National XPath validator
+  - name: YAML
+    level: 4
+    years: 5
+    comment:
+      nb: ~
+      en: ~
+  - name: SQL
+    level: 4
+    years: 2
+    comment:
+      nb: ~
+      en: ~
+  - name: Power BI
+    level: 4
+    years: 2
+    comment:
+      nb: ~
+      en: ~
+  - name: DAX
+    level: 3
+    years: 2
+    comment:
+      nb: ~
+      en: ~
+  - name: M
+    level: 3
+    years: 2
+    comment:
+      nb: ~
+      en: ~
+  - name: Matlab
+    level: 3
+    years: 7
+    comment:
+      nb: ~
+      en: ~
+  - name: Fortran
+    level: 3
+    years: 4
+    comment:
+      nb: ~
+      en: ~
+  - name: Jinja2
+    level: 3
+    years: 1
+    comment:
+      nb: ~
+      en: ~
 
 extracurricular:
   - id: tech_board
@@ -262,7 +377,7 @@ extracurricular:
       nb: Fast medlem, Teknologirådet
       en: Permanent Member, Technology Advisory Board
     start:
-      year: 2025
+      year: 2026
       month: 2
     end: ~
     visible: true
@@ -301,7 +416,7 @@ extracurricular:
     organisation: *ntnu
     start:
       year: 2015
-      month: 6
+      month: 3
     end:
       year: 2018
       month: 6
