@@ -3,7 +3,7 @@
 meta:
   languages: [nb, en]
   default_language: nb
-  version: "0.1.0"
+  version: '0.1.0'
   licenses:
     tooling:
       spdx: Apache-2.0
@@ -30,11 +30,11 @@ contact:
   email: ~
   address: ~
   phone: ~
-  
+
 profile:
   nb: ~
   en: ~
-  
+
 anchors:
   organisations:
     dfo: &dfo
@@ -68,14 +68,14 @@ anchors:
         nb: NTNU
         en: NTNU
     posten: &posten
-      full: 
+      full:
         nb: Posten & Brings Logistikksenter Oslo
         en: Post & Bring Logistics Center Oslo
     stovner: &stovner
-      full: 
+      full:
         nb: Stovner videregående skole
         en: Stovner Upper Secondary School
-  
+
 experience:
   - id: dfo
     title:
@@ -85,7 +85,7 @@ experience:
     location:
       nb: Oslo, Norge
       en: Oslo, Norway
-    start: 
+    start:
       year: 2024
       month: 11
     end: ~
@@ -111,7 +111,7 @@ experience:
     bullets:
       nb:
         - ~
-      en: 
+      en:
         - ~
   - id: ffi_summer_2017
     title:
@@ -128,9 +128,9 @@ experience:
       year: 2017
       month: 7
     bullets:
-      nb: 
+      nb:
         - ~
-      en: 
+      en:
         - ~
   - id: ffi_summer_2016
     title:
@@ -147,9 +147,9 @@ experience:
       year: 2016
       month: 8
     bullets:
-      nb: 
+      nb:
         - ~
-      en: 
+      en:
         - ~
   - id: posten
     title:
@@ -166,9 +166,9 @@ experience:
       year: 2018
       month: 6
     bullets:
-      nb: 
+      nb:
         - ~
-      en: 
+      en:
         - ~
 
 education:
@@ -180,7 +180,7 @@ education:
     location:
       nb: Trondheim, Norge
       en: Trondheim, Norway
-    start: 
+    start:
       year: 2013
       month: 8
     end:
@@ -211,7 +211,7 @@ linguistics:
   - language:
       nb: Norsk
       en: Norwegian
-    level: 
+    level:
       nb: Morsmål
       en: Native
   - language:
@@ -232,16 +232,16 @@ skills:
       nb: Avansert
       en: Advanced
     items:
-      - Python
-      - LaTeX
-      - SQL
-      - YAML
-      - XML
-      - XPath
-      - DAX
-      - M
-      - Git
-      - Power BI
+    - Python
+    - LaTeX
+    - SQL
+    - YAML
+    - XML
+    - XPath
+    - DAX
+    - M
+    - Git
+    - Power BI
   - category:
       nb: Mellomnivå
       en: Intermediate
@@ -295,10 +295,10 @@ extracurricular:
       nb: Skribent, Nabladet
       en: Writer, Nabladet
     organisation: *ntnu
-    start: 
+    start:
       year: 2015
       month: 6
-    end: 
+    end:
       year: 2018
       month: 6
     details:
@@ -306,7 +306,7 @@ extracurricular:
       en: Author of six articles, co-author of two articles
     visible: true
   - id: galilei
-    title: 
+    title:
       nb: Vinner av Galilei-prisen
       en: Winner of the Galilei Prize
     organisation: *stovner
