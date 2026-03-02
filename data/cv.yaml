@@ -19,12 +19,13 @@ meta:
         Personal contact details are excluded from public builds.
         Injected at render time via environment variables or CI secrets.
   author: Arne Magnus Tveita Løken
-  repository: https://github.com/amtl-no/curriculum-vitae-public
+  repository: ~
 
 contact:
   name: Arne Magnus Tveita Løken
   linkedin: arne-magnus-tveita-loken
   github: amtl-no
+  gitlab: amtl-no
   website: amtl.no
   email: ~
   address: ~
@@ -301,8 +302,10 @@ extracurricular:
     organisation: *ntnu
     start: 
       year: 2015
+      month: 6
     end: 
       year: 2018
+      month: 6
     details:
       nb: Forfatter av seks artikler, medforfatter av to artikler
       en: Author of six articles, co-author of two articles
@@ -312,7 +315,12 @@ extracurricular:
       nb: Vinner av Galilei-prisen
       en: Winner of the Galilei Prize
     organisation: *stovner
-    year: 2012
+    start:
+      year: 2012
+      month: ~
+    end:
+      year: 2012
+      month: ~
     details:
       nb: >-
         Tildelt for å ha gjennomført det beste naturvitenskapelige
