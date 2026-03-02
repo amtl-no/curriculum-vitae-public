@@ -1,4 +1,7 @@
 # Min dynamiske CV-motor
+> **License:** [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)
+> **Copyright:** © 2026 Arne Magnus Tveita Løken
+---
 
 ![Yamllint status](https://github.com/amtl-no/curriculum-vitae-public/actions/workflows/lint-yaml.yaml/badge.svg)
 
