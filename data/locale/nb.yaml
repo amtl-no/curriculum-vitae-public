@@ -1,0 +1,53 @@
+%YAML 1.2
+# yamllint disable rule:line-length
+# SPDX-License-Identifier: CC-BY-4.0
+# SPDX-FileCopyrightText: 2026 Arne Magnus Tveita Løken <212174338+amtl-no@users.noreply.github.com>
+# yamllint enable rule:line-length
+---
+date_format: '{day}. {month} {year}'
+
+address:
+  postcode_prefix: ''
+
+months:
+  - ''
+  - januar
+  - februar
+  - mars
+  - april
+  - mai
+  - juni
+  - juli
+  - august
+  - september
+  - oktober
+  - november
+  - desember
+
+sections:
+  profile: Profil
+  experience: Arbeidserfaring
+  education: Utdanning
+  extracurricular: Utenomfaglige aktiviteter
+  languages: Språkferdigheter
+  skills: Tekniske ferdigheter
+
+present: 'd.d.'
+skill_matrix:
+  head:
+    level: Nivå
+    skill: Verktøy
+    years: År
+    comment: Kommentar
+  legend:
+    column_factor: '0.60'
+    descriptor: Forklaring
+    level1: Grunnleggende kjennskap
+    level2: Grunnleggende og egen erfaring
+    level3: Bred prosjekterfaring
+    level4: Dyp ekspertise
+    level5: Ekspert
+
+linguistics:
+  descriptor: Språk
+  level: Nivå
