@@ -17,8 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-    matrix:
-      folder: :["data", ".github/workflows"]
+      matrix:
+        folder: ["data", ".github/workflows"]
 
     steps:
       - name: "Checkout"
