@@ -1,6 +1,8 @@
 %YAML 1.2
+# yamllint disable rule:line-length
 # SPDX-License-Identifier: CC-BY-4.0
 # SPDX-FileCopyrightText: 2026 Arne Magnus Tveita Løken <212174338+amtl-no@users.noreply.github.com>
+# yamllint enable rule:line-length
 ---
 meta:
   languages: [nb, en]
