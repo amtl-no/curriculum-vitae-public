@@ -8,7 +8,7 @@ meta:
     tooling:
       spdx: Apache-2.0
       url: https://spdx.org/licenses/Apache-2.0.html
-    tooling:
+    content:
       spdx: CC-BY-4.0
       url: https://spdx.org/licenses/CC-BY-4.0.html
   personal_data:
