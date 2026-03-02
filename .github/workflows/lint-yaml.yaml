@@ -8,6 +8,7 @@ on: # yamllint disable-line rule:truthy
   push:
     paths:
       - 'data/**.yaml'
+      - '.github/**.yaml'
       - '.github/workflows/**.yaml'
       - '.yamllint'
   workflow_dispatch: # yamllint disable-line rule:truthy
@@ -19,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        folder: ['data', '.github/workflows']
+        target: ['data', '.github/workflows', '.github/dependabot.yaml']
 
     steps:
       - name: 'Checkout'
