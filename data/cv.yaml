@@ -1,0 +1,329 @@
+%YAML 1.2
+---
+meta:
+  languages: [nb, en]
+  default_language: nb
+  version: "0.1.0"
+  licenses:
+    tooling:
+      spdx: Apache-2.0
+      url: https://spdx.org/licenses/Apache-2.0.html
+    tooling:
+      spdx: CC-BY-4.0
+      url: https://spdx.org/licenses/CC-BY-4.0.html
+  personal_data:
+    gdpr_basis: legitimate_interest
+    visibility:
+      public: false
+      note: >-
+        Personal contact details are excluded from public builds.
+        Injected at render time via environment variables or CI secrets.
+  author: Arne Magnus Tveita Løken
+  repository: https://github.com/amtl-no/curriculum-vitae
+
+contact:
+  name: Arne Magnus Tveita Løken
+  linkedin: arne-magnus-tveita-loken
+  github: amtl-no
+  website: amtl.no
+  email: ~
+  address: ~
+  phone: ~
+  
+profile:
+  nb: ~
+  en: ~
+  
+anchors:
+  organisations:
+    dfo: &dfo
+      full:
+        nb: Direktoratet for Forvaltning og Økonomistyring
+        en: The Norwegian Agency for Finance and Public Management
+      short:
+        nb: DFØ
+        en: DFØ
+    tekna: &tekna
+      full:
+        nb: Teknisk-naturvitenskapelig Forening
+        en: >-
+          Norwegian Society of Graduate Technical and Scientific
+          Professionals
+      short:
+        nb: Tekna
+        en: Tekna
+    ffi: &ffi
+      full:
+        nb: Forsvarets forskningsinstitutt
+        en: Norwegian Defence Research Establishment
+      short:
+        nb: FFI
+        en: FFI
+    ntnu: &ntnu
+      full:
+        nb: Norges teknisk-naturvitenskapelige universitet
+        en: Norwegian University of Science and Technology
+      short:
+        nb: NTNU
+        en: NTNU
+    posten: &posten
+      full: 
+        nb: Posten & Brings Logistikksenter Oslo
+        en: Post & Bring Logistics Center Oslo
+    stovner: &stovner
+      full: 
+        nb: Stovner videregående skole
+        en: Stovner Upper Secondary School
+  
+experience:
+  - id: dfo
+    title:
+      nb: Seniorrådgiver
+      en: Senior Advisor
+    employer: *dfo
+    location:
+      nb: Oslo, Norge
+      en: Oslo, Norway
+    start: 
+      year: 2024
+      month: 11
+    end: ~
+    bullets:
+      nb:
+        - ~
+      en: 
+        - ~
+
+  - id: ffi_permanent
+    title:
+      nb: Forsker
+      en: Scientific Researcher
+    employer: *ffi
+    location:
+      nb: Kjeller, Norge
+      en: Kjeller, Norway
+    start:
+      year: 2018
+      month: 8
+    end:
+      year: 2024
+      month: 11
+    bullets:
+      nb:
+        - ~
+      en: 
+        - ~
+        
+  - id: ffi_summer_2017
+    title:
+      nb: Sommerstudent
+      en: Summer Intern
+    employer: *ffi
+    location:
+      nb: Kjeller, Norge
+      en: Kjeller, Norway
+    start:
+      year: 2017
+      month: 6
+    end:
+      year: 2017
+      month: 7
+    bullets:
+      nb: 
+        - ~
+      en: 
+        - ~
+
+  - id: ffi_summer_2016
+    title:
+      nb: Sommerstudent
+      en: Summer Intern
+    employer: *ffi
+    location:
+      nb: Kjeller, Norge
+      en: Kjeller, Norway
+    start:
+      year: 2016
+      month: 6
+    end:
+      year: 2016
+      month: 8
+    bullets:
+      nb: 
+        - ~
+      en: 
+        - ~
+
+  - id: posten
+    title:
+      nb: Sesongvikar
+      en: Seasonal Worker
+    employer: *posten
+    location:
+      nb: Alnabru, Norge
+      en: Alnabru, Norway
+    start:
+      year: 2011
+      month: 6
+    end:
+      year: 2018
+      month: 6
+    bullets:
+      nb: 
+        - ~
+      en: 
+        - ~
+
+education:
+  - id: ntnu
+    degree:
+      nb: Sivilingeniør (M.Sc.) i Fysikk og Matematikk
+      en: Master of Science in Physics and Mathematics
+    institution: *ntnu
+    location:
+      nb: Trondheim, Norge
+      en: Trondheim, Norway
+    start: 
+      year: 2013
+      month: 8
+    end:
+      year: 2018
+      month: 6
+    details:
+      nb: ~
+      en: ~
+
+  - id: vgs
+    degree:
+      nb: Videregående skole
+      en: Upper Secondary School
+    institution: *stovner
+    location:
+      nb: Oslo, Norge
+      en: Oslo, Norway
+    start:
+      year: 2010
+      month: 8
+    end:
+      year: 2013
+      month: 6
+    details:
+      nb: Uteksaminert som kullets beste elev
+      en: Graduated top of class
+
+linguistics:
+  - language:
+      nb: Norsk
+      en: Norwegian
+    level: 
+      nb: Morsmål
+      en: Native
+  - language:
+      nb: Engelsk
+      en: English
+    level:
+      nb: Flytende
+      en: Fluent
+  - language:
+      nb: Fransk
+      en: French
+    level:
+      nb: Grunnleggende
+      en: Basic
+
+skills:
+  - category:
+      nb: Avansert
+      en: Advanced
+    items:
+      - Python
+      - LaTeX
+      - SQL
+      - YAML
+      - XML
+      - XPath
+      - DAX
+      - M
+      - Git
+      - Power BI
+  - category:
+      nb: Mellomnivå
+      en: Intermediate
+    items:
+      - C++
+      - Fortran
+      - Matlab
+      - Jinja2
+
+extracurricular:
+  - id: tech_board
+    organisation: *dfo
+    title:
+      nb: Fast medlem, Teknologirådet
+      en: Permanent Member, Technology Advisory Board
+    start:
+      year: 2025
+      month: 2
+    end: ~
+    visible: true
+  - id: union
+    organisation: *dfo
+    union: *tekna
+    title:
+      nb: Fagforeningsleder
+      en: Union Leader
+    start:
+      year: 2025
+      month: 5
+    end: ~
+    visible: true
+  - id: social_committee
+    organisation: *dfo
+    title:
+      nb: Arrangør, sosiale arrangementer
+      en: Social Events Organiser
+    details:
+      nb: >-
+        Arrangerer fredagsquizer og afterwork både innad i egen avdeling
+        og på tvers av virksomheten
+      en: >-
+        Organises Friday quizzes and afterwork gatherings within the
+        department, and across the organisation
+    start:
+      year: 2024
+      month: 12
+    end: ~
+    visible: true
+  - id: nabladet
+    title:
+      nb: Skribent, Nabladet
+      en: Writer, Nabladet
+    organisation: *ntnu
+    start: 
+      year: 2015
+    end: 
+      year: 2018
+    details:
+      nb: Forfatter av seks artikler, medforfatter av to artikler
+      en: Author of six articles, co-author of two articles
+    visible: true
+  - id: galilei
+    title: 
+      nb: Vinner av Galilei-prisen
+      en: Winner of the Galilei Prize
+    organisation: *stovner
+    year: 2012
+    details:
+      nb: >-
+        Tildelt for å ha gjennomført det beste naturvitenskapelige
+        eksperimentet
+      en: >-
+        Awarded for conducting the best natural science experiment
+    visible: true
+      
+    
+     
+
+    
+
+

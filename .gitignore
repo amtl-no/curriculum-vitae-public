@@ -6,7 +6,8 @@ __pycache__/
 *.aux
 *.log
 *.out
-*.pdf
 *.toc
 
-*.tex
+# Generated files only
+output/*.tex
+output/*.pdf
