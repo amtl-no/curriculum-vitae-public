@@ -31,7 +31,7 @@ contact:
     middle: Tveita
     family: Løken
   website: amtl.no
-  email: 
+  email:
     value: ~
     visible: true
     secret: true
@@ -39,16 +39,16 @@ contact:
     value: ~
     visible: true
     secret: true
-  socials:  
-    linkedin: 
+  socials:
+    linkedin:
       handle: arne-magnus-tveita-loken
       visible: true
       secret: false
-    github: 
+    github:
       handle: amtl-no
       visible: true
       secret: false
-    gitlab: 
+    gitlab:
       handle: amtl-no
       visible: true
       secret: false
@@ -241,7 +241,8 @@ education:
         Benyttet Python, C/C++ og Fortran i egenutviklet beregningspipeline.
       en: >-
         Specialisation: Applied Physics.
-        Thesis: Simulation of particle transport in oceanic and atmospheric systems.
+        Thesis: Simulation of particle transport in oceanic and atmospheric
+        systems.
         Developed custom computation pipeline in Python, C/C++ and Fortran.
   - id: vgs
     degree:

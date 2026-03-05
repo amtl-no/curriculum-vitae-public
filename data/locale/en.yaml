@@ -1,4 +1,4 @@
-%YAML 1.2 
+%YAML 1.2
 # yamllint disable rule:line-length
 # SPDX-License-Identifier: CC-BY-4.0
 # SPDX-FileCopyrightText: 2026 Arne Magnus Tveita Løken <212174338+amtl-no@users.noreply.github.com>
@@ -41,7 +41,7 @@ skill_matrix:
     years: Years
     comment: Comment
   legend:
-    column_factor: "0.40"
+    column_factor: '0.40'
     descriptor: Legend
     level1: Basic familiarity
     level2: Basic and own project experience
