@@ -20,7 +20,10 @@ documentclass:
 packages:
   - name: geometry
     options:
-      scale: '0.86'
+      top: 1in
+      bottom: 1.25in
+      left: 1in
+      right: 1.25in
   - name: fontenc
     options:
       - T1
@@ -32,6 +35,7 @@ packages:
       lang: true
   - name: csquotes
   - name: microtype
+  - name: sourceserifpro
 
 commands:
   - \recomputelengths
