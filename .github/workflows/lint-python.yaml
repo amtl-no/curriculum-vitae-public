@@ -9,7 +9,7 @@ on: # yamllint disable-line rule:truthy
     paths:
       - 'scripts/**.py'
   workflow_dispatch: # yamllint disable-line rule:truthy
-  
+
 jobs:
   ruff:
     runs-on: ubuntu-latest
