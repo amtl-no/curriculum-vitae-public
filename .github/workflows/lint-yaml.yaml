@@ -20,7 +20,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: ['data', '.github/workflows', '.github/dependabot.yaml', '.yamllint.yaml']
+        target: 
+          - 'data' 
+          - '.github/workflows'
+          - '.github/dependabot.yaml'
+          - '.yamllint.yaml'
 
     steps:
       - name: 'Checkout'
