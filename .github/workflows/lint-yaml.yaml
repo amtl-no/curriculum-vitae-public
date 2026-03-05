@@ -20,8 +20,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: 
-          - 'data' 
+        target:
+          - 'data'
           - '.github/workflows'
           - '.github/dependabot.yaml'
           - '.yamllint.yaml'
