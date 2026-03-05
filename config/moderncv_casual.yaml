@@ -37,7 +37,6 @@ theme:
   color: blue
 
 pre_commands:
-  # urlcolor derived from theme.color via MODERNCV_PALETTES in render.py
   - \PassOptionsToPackage{colorlinks=true,urlcolor=[rgb]{{color1_rgb}}}{hyperref}
 
 commands:
