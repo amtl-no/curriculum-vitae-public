@@ -129,8 +129,14 @@ anchors:
       full:
         nb: Posten & Brings Logistikksenter Oslo
         en: Post & Bring Logistics Center Oslo
+      short:
+        nb: Posten & Brings Logistikksenter Oslo
+        en: Post & Bring Logistics Center Oslo
     stovner: &stovner
       full:
+        nb: Stovner videregående skole
+        en: Stovner Upper Secondary School
+      short:
         nb: Stovner videregående skole
         en: Stovner Upper Secondary School
 
