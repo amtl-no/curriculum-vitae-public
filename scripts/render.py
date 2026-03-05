@@ -19,6 +19,7 @@ Usage:
 
 import argparse
 import os
+import re
 import subprocess
 import sys
 from datetime import date
@@ -49,7 +50,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--public",     action="store_true", help="Public build — omit secret contact details")
     parser.add_argument("--no-compile", action="store_true", help="Render .tex only, skip PDF compilation")
     parser.add_argument("--env-file",   type=Path, default=Path(".env"), help="Path to .env file (default: .env)")
+    parser.add_argument("--schema",     type=Path, default=None,           help="Path to typesetting schema YAML (e.g. config/moderncv_schema.yaml)")
     return parser.parse_args()
+
 
 # ── Loaders ───────────────────────────────────────────────────────────────────
 
@@ -58,9 +61,41 @@ def load_yaml(path: Path) -> dict:
         return yaml.safe_load(f)
 
 
-def load_config(config_path: Path) -> dict:
+def load_config(config_path: Path, schema_path: Path | None = None) -> dict:
     cfg = load_yaml(config_path)
     cfg["_name"] = config_path.name
+
+    # Validate and expand theme block against schema if provided
+    theme = cfg.get("theme", {})
+    if theme and schema_path:
+        schema   = load_yaml(schema_path)
+        palettes = schema.get("palettes", {})
+        styles   = schema.get("styles", [])
+        style    = theme.get("style")
+        color    = theme.get("color")
+        if style not in styles:
+            raise ValueError(
+                f"Unknown moderncv style: {style!r}. "
+                f"Valid: {sorted(styles)}"
+            )
+        if color not in palettes:
+            raise ValueError(
+                f"Unknown moderncv color: {color!r}. "
+                f"Valid: {sorted(palettes)}"
+            )
+        theme.update(palettes[color])
+
+    # Interpolate {key} placeholders in pre_commands and commands against theme.
+    # Regex substitution leaves LaTeX braces like {\footskip} untouched —
+    # only exact matches against known theme keys are replaced.
+    def interpolate(cmd: str) -> str:
+        if not theme:
+            return cmd
+        pattern = r"\{(" + "|".join(re.escape(k) for k in theme) + r")\}"
+        return re.sub(pattern, lambda m: theme[m.group(1)], cmd)
+
+    cfg["pre_commands"] = [interpolate(cmd) for cmd in cfg.get("pre_commands", [])]
+    cfg["commands"]     = [interpolate(cmd) for cmd in cfg.get("commands", [])]
     return cfg
 
 
@@ -280,9 +315,27 @@ def render(cv: dict, cfg: dict, locale: dict, lang: str, templates_dir: Path) ->
 
 # ── Compilation ───────────────────────────────────────────────────────────────
 
+
+def write_xmpdata(tex_path: Path, xmp: dict) -> None:
+    """
+    Write a .xmpdata file alongside the .tex file for pdfx PDF/A compliance.
+    Receives a flat dict — all structure-awareness lives in the caller.
+    """
+    lines = [
+        f"\\Title{{{xmp['title']}}}",
+        f"\\Author{{{xmp['author']}}}",
+        f"\\Language{{{xmp['lang_tag']}}}",
+        f"\\Subject{{{xmp['title']}}}",
+        f"\\Keywords{{{xmp['keywords']}}}",
+        f"\\Publisher{{{xmp['author']}}}",
+    ]
+    tex_path.with_suffix(".xmpdata").write_text(
+        "\n".join(lines), encoding="utf-8"
+    )
+
 def compile_pdf(tex_path: Path) -> None:
     result = subprocess.run(
-        ["latexmk", "-pdf", "-interaction=nonstopmode", tex_path.name],
+        ["latexmk", "-lualatex", "-interaction=nonstopmode", tex_path.name],
         cwd=tex_path.parent,
         capture_output=True,
         text=True,
@@ -320,7 +373,7 @@ def main() -> None:
     resolve_lang = make_resolver(lang_keys)
     cv = resolve_lang(cv, args.lang)
 
-    cfg    = load_config(args.config)
+    cfg    = load_config(args.config, schema_path=args.schema)
     locale = load_yaml(args.locale)
 
     tex_source = render(cv, cfg, locale, args.lang, args.templates)
@@ -331,6 +384,15 @@ def main() -> None:
 
     tex_path = args.output / f"{stem}.tex"
     tex_path.write_text(tex_source, encoding="utf-8")
+    author    = raw["meta"]["author"]
+    xmp_meta  = raw["meta"]["xmp"]
+    xmp = {
+        "title":    xmp_meta["title"][args.lang].format(author=author),
+        "author":   author,
+        "lang_tag": xmp_meta["lang_tag"][args.lang],
+        "keywords": xmp_meta["keywords"][args.lang],
+    }
+    write_xmpdata(tex_path, xmp)
     print(f"Rendered  -> {tex_path}")
 
     if not args.no_compile:

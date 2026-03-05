@@ -18,26 +18,26 @@ styles:
 
 palettes:
   blue:
-    color1_rgb: "0.22,0.45,0.70"
-    color2_rgb: "0.45,0.45,0.45"
+    color1_rgb: '0.22,0.45,0.70'
+    color2_rgb: '0.45,0.45,0.45'
   orange:
-    color1_rgb: "0.95,0.55,0.15"
-    color2_rgb: "0.45,0.45,0.45"
+    color1_rgb: '0.95,0.55,0.15'
+    color2_rgb: '0.45,0.45,0.45'
   green:
-    color1_rgb: "0.35,0.70,0.30"
-    color2_rgb: "0.45,0.45,0.45"
+    color1_rgb: '0.35,0.70,0.30'
+    color2_rgb: '0.45,0.45,0.45'
   red:
-    color1_rgb: "0.95,0.20,0.20"
-    color2_rgb: "0.45,0.45,0.45"
+    color1_rgb: '0.95,0.20,0.20'
+    color2_rgb: '0.45,0.45,0.45'
   purple:
-    color1_rgb: "0.50,0.33,0.80"
-    color2_rgb: "0.45,0.45,0.45"
+    color1_rgb: '0.50,0.33,0.80'
+    color2_rgb: '0.45,0.45,0.45'
   grey:
-    color1_rgb: "0.55,0.55,0.55"
-    color2_rgb: "0.55,0.55,0.55"
+    color1_rgb: '0.55,0.55,0.55'
+    color2_rgb: '0.55,0.55,0.55'
   burgundy:
-    color1_rgb: "0.596078,0,0"
-    color2_rgb: "0.45,0.45,0.45"
+    color1_rgb: '0.596078,0,0'
+    color2_rgb: '0.45,0.45,0.45'
   black:
-    color1_rgb: "0,0,0"
-    color2_rgb: "0,0,0"
+    color1_rgb: '0,0,0'
+    color2_rgb: '0,0,0'
