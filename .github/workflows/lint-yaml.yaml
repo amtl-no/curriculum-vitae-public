@@ -8,6 +8,7 @@ on: # yamllint disable-line rule:truthy
   push:
     paths:
       - 'data/**.yaml'
+      - 'config/**.yaml'
       - '.github/**.yaml'
       - '.github/workflows/**.yaml'
       - '.yamllint.yaml'
@@ -22,6 +23,7 @@ jobs:
       matrix:
         target:
           - 'data'
+          - 'config'
           - '.github/workflows'
           - '.github/dependabot.yaml'
           - '.yamllint.yaml'
