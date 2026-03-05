@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2026 Arne Magnus Tveita Løken <212174338+amtl-no@users.noreply.github.com>
 # yamllint enable rule:line-length
 ---
-name: 'GitHub Actions Yaml linting'
+name: 'GitHub Actions Python linting (ruff-based)'
 on: # yamllint disable-line rule:truthy
   push:
     paths:
