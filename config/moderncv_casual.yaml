@@ -11,7 +11,7 @@ meta:
 
 template: moderncv/cv.tex.j2
 
-documentclass: 
+documentclass:
   name: moderncv
   options:
     - a4paper
@@ -21,23 +21,28 @@ packages:
   - name: geometry
     options:
       top: 1in
-      bottom: 1.25in
+      bottom: 1in
       left: 1in
-      right: 1.25in
-  - name: fontenc
-    options:
-      - T1
-  - name: inputenc
-    options:
-      - utf8
+      right: 1in
   - name: babel
     options:
       lang: true
   - name: csquotes
-  - name: microtype
-  - name: sourceserifpro
+  - name: fontspec
+  - name: xurl
+  - name: nowidow
+
+theme:
+  style: casual
+  color: blue
+
+pre_commands:
+  # urlcolor derived from theme.color via MODERNCV_PALETTES in render.py
+  - \PassOptionsToPackage{colorlinks=true,urlcolor=[rgb]{{color1_rgb}}}{hyperref}
 
 commands:
   - \recomputelengths
-  - \moderncvtheme[blue]{casual}
+  - \setlength{\footskip}{57pt}
+  - \setmainfont{Source Serif Pro}
+  - \moderncvtheme[{color}]{{style}}
   - \patchcmd{\makeletterclosing}{[3em]}{[1em]}{}{}

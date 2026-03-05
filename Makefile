@@ -21,6 +21,7 @@ PYTHON    := uv run
 # ── Defaults ─────────────────────────────────────────────────────────────────
 
 CONFIG    ?= $(CONFIGS)/moderncv_casual.yaml
+SCHEMA    ?= $(CONFIGS)/moderncv_schema.yaml
 
 # ── Base render command ───────────────────────────────────────────────────────
 # All path knowledge lives here. The script itself is path-agnostic.
@@ -29,6 +30,7 @@ define RENDER
 	$(PYTHON) $(SCRIPT) \
 		--cv $(CV) \
 		--config $(1) \
+		--schema $(SCHEMA) \
 		--locale $(LOCALES)/$(2).yaml \
 		--templates $(TEMPLATES) \
 		--output $(OUTPUT) \

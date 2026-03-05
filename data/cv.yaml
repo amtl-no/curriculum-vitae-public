@@ -5,9 +5,20 @@
 # yamllint enable rule:line-length
 ---
 meta:
+  author: Arne Magnus Tveita Løken
   languages: [nb, en]
   default_language: nb
   version: '0.1.0'
+  xmp:
+    title:
+      nb: 'Curriculum Vitae \\textemdash\\ {author}'
+      en: 'Curriculum Vitae \\textemdash\\ {author}'
+    keywords:
+      nb: CV
+      en: CV
+    lang_tag:
+      nb: nb-NO
+      en: en-GB
   licenses:
     tooling:
       spdx: Apache-2.0
@@ -22,7 +33,6 @@ meta:
       note: >-
         Personal contact details are excluded from public builds.
         Injected at render time via environment variables or CI secrets.
-  author: Arne Magnus Tveita Løken
   repository: ~
 
 contact:
