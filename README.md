@@ -4,6 +4,7 @@
 ---
 
 ![Yamllint status](https://github.com/amtl-no/curriculum-vitae/actions/workflows/lint-yaml.yaml/badge.svg)
+![Ruff status](https://github.com/amtl-no/curriculum-vitae/actions/workflows/lint-python.yaml/badge.svg)
 
 ## Struktur
 - `data/`: Her bor `cv.yaml` (selve innholdet).

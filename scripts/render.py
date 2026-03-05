@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-render.py — CV rendering pipeline
+Render CV pipeline.
 
 All paths and configuration passed explicitly — no hardcoded project structure.
 
@@ -29,63 +29,102 @@ import yaml
 from dotenv import load_dotenv
 from jinja2 import Environment, FileSystemLoader
 
-# ── CLI ───────────────────────────────────────────────────────────────────────
+# ── CLI ──────────────────────────────────────────────────────────────────────
+
 
 def parse_args() -> argparse.Namespace:
+    """Parse command-line arguments for the CV rendering pipeline."""
     parser = argparse.ArgumentParser(
         description="Render CV from YAML + Jinja2 template to PDF"
     )
-    parser.add_argument("--cv",        type=Path, required=True, help="Path to cv.yaml")
-    parser.add_argument("--config",    type=Path, required=True, help="Path to typesetting config YAML")
-    parser.add_argument("--locale",    type=Path, required=True, help="Path to locale YAML")
-    parser.add_argument("--templates", type=Path, required=True, help="Path to templates directory")
-    parser.add_argument("--output",    type=Path, required=True, help="Path to output directory")
-    parser.add_argument("--lang",                 required=True, help="Language code (e.g. nb, en)")
+    parser.add_argument(
+        "--cv", type=Path, required=True, help="Path to cv.yaml"
+    )
+    parser.add_argument(
+        "--config",
+        type=Path,
+        required=True,
+        help="Path to typesetting config YAML",
+    )
+    parser.add_argument(
+        "--locale", type=Path, required=True, help="Path to locale YAML"
+    )
+    parser.add_argument(
+        "--templates",
+        type=Path,
+        required=True,
+        help="Path to templates directory",
+    )
+    parser.add_argument(
+        "--output", type=Path, required=True, help="Path to output directory"
+    )
+    parser.add_argument(
+        "--lang", required=True, help="Language code (e.g. nb, en)"
+    )
     parser.add_argument(
         "--ignored-keys",
         nargs="*",
         default=["anchors", "meta"],
         help="Top-level cv.yaml keys to ignore (default: anchors meta)",
     )
-    parser.add_argument("--public",     action="store_true", help="Public build — omit secret contact details")
-    parser.add_argument("--no-compile", action="store_true", help="Render .tex only, skip PDF compilation")
-    parser.add_argument("--env-file",   type=Path, default=Path(".env"), help="Path to .env file (default: .env)")
-    parser.add_argument("--schema",     type=Path, default=None,           help="Path to typesetting schema YAML (e.g. config/moderncv_schema.yaml)")
+    parser.add_argument(
+        "--public",
+        action="store_true",
+        help="Public build — omit secret contact details",
+    )
+    parser.add_argument(
+        "--no-compile",
+        action="store_true",
+        help="Render .tex only, skip PDF compilation",
+    )
+    parser.add_argument(
+        "--env-file",
+        type=Path,
+        default=Path(".env"),
+        help="Path to .env file (default: .env)",
+    )
+    parser.add_argument(
+        "--schema",
+        type=Path,
+        default=None,
+        help="Path to typesetting schema YAML (e.g. config/schema.yaml)",
+    )
     return parser.parse_args()
 
 
-# ── Loaders ───────────────────────────────────────────────────────────────────
+# ── Loaders ──────────────────────────────────────────────────────────────────
+
 
 def load_yaml(path: Path) -> dict:
-    with open(path, "r", encoding="utf-8") as f:
+    """Load and parse a YAML file from a given path."""
+    with open(path, encoding="utf-8") as f:
         return yaml.safe_load(f)
 
 
 def load_config(config_path: Path, schema_path: Path | None = None) -> dict:
+    """Load configuration and optionally validate it against a schema."""
     cfg = load_yaml(config_path)
     cfg["_name"] = config_path.name
 
     # Validate and expand theme block against schema if provided
     theme = cfg.get("theme", {})
     if theme and schema_path:
-        schema   = load_yaml(schema_path)
+        schema = load_yaml(schema_path)
         palettes = schema.get("palettes", {})
-        styles   = schema.get("styles", [])
-        style    = theme.get("style")
-        color    = theme.get("color")
+        styles = schema.get("styles", [])
+        style = theme.get("style")
+        color = theme.get("color")
         if style not in styles:
             raise ValueError(
-                f"Unknown moderncv style: {style!r}. "
-                f"Valid: {sorted(styles)}"
+                f"Unknown moderncv style: {style!r}. Valid: {sorted(styles)}"
             )
         if color not in palettes:
             raise ValueError(
-                f"Unknown moderncv color: {color!r}. "
-                f"Valid: {sorted(palettes)}"
+                f"Unknown moderncv color: {color!r}. Valid: {sorted(palettes)}"
             )
         theme.update(palettes[color])
 
-    # Interpolate {key} placeholders in pre_commands and commands against theme.
+    # Interpolate {key} placeholders in pre_commands and commands wrt theme.
     # Regex substitution leaves LaTeX braces like {\footskip} untouched —
     # only exact matches against known theme keys are replaced.
     def interpolate(cmd: str) -> str:
@@ -94,14 +133,17 @@ def load_config(config_path: Path, schema_path: Path | None = None) -> dict:
         pattern = r"\{(" + "|".join(re.escape(k) for k in theme) + r")\}"
         return re.sub(pattern, lambda m: theme[m.group(1)], cmd)
 
-    cfg["pre_commands"] = [interpolate(cmd) for cmd in cfg.get("pre_commands", [])]
-    cfg["commands"]     = [interpolate(cmd) for cmd in cfg.get("commands", [])]
+    cfg["pre_commands"] = [
+        interpolate(cmd) for cmd in cfg.get("pre_commands", [])
+    ]
+    cfg["commands"] = [interpolate(cmd) for cmd in cfg.get("commands", [])]
     return cfg
 
 
 def inject_secrets(cv: dict, public: bool) -> None:
     """
-    Inject secrets from environment into contact fields marked secret: true.
+    Inject secrets from environment into contact fields.
+    
     No-op on public builds.
 
     Env var conventions:
@@ -137,14 +179,18 @@ def inject_secrets(cv: dict, public: bool) -> None:
             if value:
                 node["value"] = value
 
-# ── Language resolution ───────────────────────────────────────────────────────
+
+# ── Language resolution ──────────────────────────────────────────────────────
+
 
 def make_resolver(lang_keys: set):
     """
-    Returns a recursive resolver function for the given set of language keys.
+    Return a recursive resolver function for the given set of language keys.
+    
     Collapses {nb: ..., en: ...} dicts to the requested language.
-    Leaves all other structures intact — including {value, secret, visible} nodes.
+    Leaves all other structures intact — inc. {value, secret, visible} nodes.
     """
+
     def resolve_lang(node, lang: str):
         if isinstance(node, dict):
             if node.keys() <= lang_keys and lang in node:
@@ -153,27 +199,35 @@ def make_resolver(lang_keys: set):
         if isinstance(node, list):
             return [resolve_lang(i, lang) for i in node]
         return node
+
     return resolve_lang
 
-# ── Contact helpers ───────────────────────────────────────────────────────────
+
+# ── Contact helpers ──────────────────────────────────────────────────────────
+
 
 def build_moderncv_name(name: dict) -> tuple[str, str]:
     """
     Build moderncv firstname / familyname from structured name dict.
-    Combines given + middle (if present) into firstname, family into familyname.
+    
+    Combines given + middle (if present) into firstname, family to familyname.
     """
-    given  = name.get("given", "")
+    given = name.get("given", "")
     middle = name.get("middle")
     family = name.get("family", "")
     firstname = f"{given} {middle}".strip() if middle else given
     return firstname, family
 
-# ── Union display ─────────────────────────────────────────────────────────────
+
+# ── Union display ────────────────────────────────────────────────────────────
+
 
 def build_union_displays(raw: dict, lang_keys: set) -> None:
     """
-    Construct union_display strings for extracurricular entries
-    that have a union field. Must run before resolve_lang.
+    Construct union_display strings for extracurricular entries.
+    
+    The entries must have a union field.
+    Must run before resolve_lang.
     """
     for entry in raw.get("extracurricular", []):
         if "union" not in entry:
@@ -181,45 +235,54 @@ def build_union_displays(raw: dict, lang_keys: set) -> None:
         displays = {}
         for lang in lang_keys:
             union_short = entry["union"]["short"].get(lang, "")
-            org_short   = entry["organisation"]["short"].get(lang, "")
+            org_short = entry["organisation"]["short"].get(lang, "")
             if lang == "nb":
                 displays[lang] = f"{union_short}-foreningen ved {org_short}"
             else:
                 displays[lang] = f"{union_short} branch at {org_short}"
         entry["union_display"] = displays
 
-# ── Jinja2 filters ────────────────────────────────────────────────────────────
+
+# ── Jinja2 filters ───────────────────────────────────────────────────────────
+
 
 def make_format_date(locale: dict):
     """
-    Returns a Jinja2 filter for date formatting.
+    Return a Jinja2 filter for date formatting.
+    
     Handles structured dicts {year, month, day}, date objects, and ISO strings.
     Driven entirely by locale data.
     """
+
     def format_date(value) -> str:
         if isinstance(value, dict):
-            year  = value.get("year")  or 0
+            year = value.get("year") or 0
             month = value.get("month") or 1
-            day   = value.get("day")   or 1
+            day = value.get("day") or 1
         elif isinstance(value, date):
             year, month, day = value.year, value.month, value.day
         elif isinstance(value, str):
             parts = value.split("-")
-            year  = int(parts[0])
+            year = int(parts[0])
             month = int(parts[1]) if len(parts) > 1 else 1
-            day   = int(parts[2]) if len(parts) > 2 else 1
+            day = int(parts[2]) if len(parts) > 2 else 1
         else:
             return str(value)
         month_name = locale["months"][month]
-        return locale["date_format"].format(day=day, month=month_name, year=year)
+        return locale["date_format"].format(
+            day=day, month=month_name, year=year
+        )
+
     return format_date
 
 
 def make_render_package(lang: str):
     """
-    Returns a Jinja2 filter for rendering LaTeX usepackage commands.
+    Return a Jinja2 filter for rendering LaTeX usepackage commands.
+    
     Handles plain strings, option lists, key=value mappings, and babel.
     """
+
     def render_package(pkg) -> str:
         if isinstance(pkg, str):
             return f"\\usepackage{{{pkg}}}"
@@ -237,6 +300,7 @@ def make_render_package(lang: str):
             opt_str = ",".join(str(o) for o in opts)
             return f"\\usepackage[{opt_str}]{{{name}}}"
         return f"\\usepackage{{{name}}}"
+
     return render_package
 
 
@@ -245,15 +309,15 @@ def latex_escape(value: str) -> str:
     if not isinstance(value, str):
         return value
     for char, escaped in [
-        ("&",  r"\&"),
-        ("%",  r"\%"),
-        ("$",  r"\$"),
-        ("#",  r"\#"),
-        ("_",  r"\_"),
-        ("{",  r"\{"),
-        ("}",  r"\}"),
-        ("~",  r"\textasciitilde{}"),
-        ("^",  r"\textasciicircum{}"),
+        ("&", r"\&"),
+        ("%", r"\%"),
+        ("$", r"\$"),
+        ("#", r"\#"),
+        ("_", r"\_"),
+        ("{", r"\{"),
+        ("}", r"\}"),
+        ("~", r"\textasciitilde{}"),
+        ("^", r"\textasciicircum{}"),
     ]:
         value = value.replace(char, escaped)
     return value
@@ -261,13 +325,15 @@ def latex_escape(value: str) -> str:
 
 def make_period_str(locale: dict):
     """
-    Returns a Jinja2 filter that formats a date range as a period string.
+    Return a Jinja2 filter that formats a date range as a period string.
+    
     start and end are structured dicts {year, month} or None for open end.
     """
+
     def fmt(d: dict) -> str:
         if not d:
             return ""
-        year  = d.get("year") or ""
+        year = d.get("year") or ""
         month = d.get("month")
         return f"{month:02d}/{year}" if month else str(year)
 
@@ -277,7 +343,8 @@ def make_period_str(locale: dict):
             end_str = locale["present"]
         else:
             if (
-                start and end
+                start
+                and end
                 and start.get("year") == end.get("year")
                 and not start.get("month")
                 and not end.get("month")
@@ -285,11 +352,19 @@ def make_period_str(locale: dict):
                 return str(start.get("year", ""))
             end_str = fmt(end)
         return f"{start_str} -- {end_str}"
+
     return period_str
 
-# ── Rendering ─────────────────────────────────────────────────────────────────
+
+# ── Rendering ────────────────────────────────────────────────────────────────
+
 
 def build_jinja_env(templates_dir: Path) -> Environment:
+    """
+    Initialize the Jinja2 environment.
+
+    Uses the specified templates directory.
+    """
     return Environment(
         loader=FileSystemLoader(str(templates_dir)),
         block_start_string="((*",
@@ -304,21 +379,28 @@ def build_jinja_env(templates_dir: Path) -> Environment:
     )
 
 
-def render(cv: dict, cfg: dict, locale: dict, lang: str, templates_dir: Path) -> str:
+def render(
+    cv: dict, cfg: dict, locale: dict, lang: str, templates_dir: Path
+) -> str:
+    """Render the CV data into a LaTeX string using Jinja2."""
     env = build_jinja_env(templates_dir)
-    env.filters["format_date"]    = make_format_date(locale)
+    env.filters["format_date"] = make_format_date(locale)
     env.filters["render_package"] = make_render_package(lang)
-    env.filters["period_str"]     = make_period_str(locale)
-    env.filters["latex_escape"]   = latex_escape
+    env.filters["period_str"] = make_period_str(locale)
+    env.filters["latex_escape"] = latex_escape
     template = env.get_template(cfg["template"])
-    return template.render(cv=cv, cfg=cfg, locale=locale, lang=lang, cfg_name=cfg["_name"])
+    return template.render(
+        cv=cv, cfg=cfg, locale=locale, lang=lang, cfg_name=cfg["_name"]
+    )
 
-# ── Compilation ───────────────────────────────────────────────────────────────
+
+# ── Compilation ──────────────────────────────────────────────────────────────
 
 
 def write_xmpdata(tex_path: Path, xmp: dict) -> None:
     """
     Write a .xmpdata file alongside the .tex file for pdfx PDF/A compliance.
+    
     Receives a flat dict — all structure-awareness lives in the caller.
     """
     lines = [
@@ -333,7 +415,9 @@ def write_xmpdata(tex_path: Path, xmp: dict) -> None:
         "\n".join(lines), encoding="utf-8"
     )
 
+
 def compile_pdf(tex_path: Path) -> None:
+    """Compile a LaTeX file to PDF using latexmk."""
     result = subprocess.run(
         ["latexmk", "-lualatex", "-interaction=nonstopmode", tex_path.name],
         cwd=tex_path.parent,
@@ -347,14 +431,17 @@ def compile_pdf(tex_path: Path) -> None:
         print(result.stderr)
         sys.exit(1)
 
-# ── Main ──────────────────────────────────────────────────────────────────────
+
+# ── Main ─────────────────────────────────────────────────────────────────────
+
 
 def main() -> None:
+    """Execute the main entry point for the CV rendering pipeline."""
     args = parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
     ignored_keys = set(args.ignored_keys)
 
-    # Load .env from explicit path if provided, otherwise search upward from cwd
+    # Load .env from explicit path if provided, or search upward from cwd
     load_dotenv(args.env_file)
 
     raw = load_yaml(args.cv)
@@ -367,28 +454,28 @@ def main() -> None:
     inject_secrets(cv, args.public)
 
     firstname, familyname = build_moderncv_name(cv["contact"]["name"])
-    cv["contact"]["firstname"]  = firstname
+    cv["contact"]["firstname"] = firstname
     cv["contact"]["familyname"] = familyname
 
     resolve_lang = make_resolver(lang_keys)
     cv = resolve_lang(cv, args.lang)
 
-    cfg    = load_config(args.config, schema_path=args.schema)
+    cfg = load_config(args.config, schema_path=args.schema)
     locale = load_yaml(args.locale)
 
     tex_source = render(cv, cfg, locale, args.lang, args.templates)
 
     config_stem = args.config.stem
-    visibility  = "public" if args.public else "private"
-    stem        = f"cv_{args.lang}_{visibility}_{config_stem}"
+    visibility = "public" if args.public else "private"
+    stem = f"cv_{args.lang}_{visibility}_{config_stem}"
 
     tex_path = args.output / f"{stem}.tex"
     tex_path.write_text(tex_source, encoding="utf-8")
-    author    = raw["meta"]["author"]
-    xmp_meta  = raw["meta"]["xmp"]
+    author = raw["meta"]["author"]
+    xmp_meta = raw["meta"]["xmp"]
     xmp = {
-        "title":    xmp_meta["title"][args.lang].format(author=author),
-        "author":   author,
+        "title": xmp_meta["title"][args.lang].format(author=author),
+        "author": author,
         "lang_tag": xmp_meta["lang_tag"][args.lang],
         "keywords": xmp_meta["keywords"][args.lang],
     }
