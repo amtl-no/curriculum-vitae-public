@@ -10,7 +10,7 @@ on: # yamllint disable-line rule:truthy
       - 'data/**.yaml'
       - '.github/**.yaml'
       - '.github/workflows/**.yaml'
-      - '.yamllint'
+      - '.yamllint.yaml'
   workflow_dispatch: # yamllint disable-line rule:truthy
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: ['data', '.github/workflows', '.github/dependabot.yaml']
+        target: ['data', '.github/workflows', '.github/dependabot.yaml', '.yamllint.yaml']
 
     steps:
       - name: 'Checkout'
