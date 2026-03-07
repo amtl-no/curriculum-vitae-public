@@ -108,7 +108,7 @@ profile:
     rather than correct by luck. Looking to apply these principles to
     data infrastructure where correctness and auditability are not
     optional.
-  
+
 
 anchors:
   organisations:
@@ -283,7 +283,7 @@ experience:
         - >-
             Konstruerte en 1.5 kW Ytterbium-fiberlaser konfigurert
             for koherent strålekombinering, inklusive FPGA-basert
-            signalbehandling for en 
+            signalbehandling for en
             strålekombinerings-tilbakekoblingssløyfe basert på
             programvaredefinerte radioer.
         - >-
@@ -314,7 +314,7 @@ experience:
             inkludert håndholdt, våpenmontert og helikopter- eller
             flymontert utstyr, både i laboratoriet og i felten.
         - >-
-            Samarbeidet med eksterne industripartnere, herunder blant 
+            Samarbeidet med eksterne industripartnere, herunder blant
             annet Nammo og Kongsberg, om bruksområder for lasersystemer.
             Utarbeidet interne tekniske rapporter og bidro til faglig
             formidling på tvers av organisasjonsgrenser.
@@ -455,7 +455,7 @@ experience:
             Registered and assessed import and export shipments under
             Norwegian customs regulations; processed restricted shipments
             and performed customs clearance.
-            
+
 representation:
   - id: exep
     title:
@@ -501,7 +501,7 @@ representation:
     details:
       nb: >-
         Teknologistrategi, interne konsultasjoner og evaluering av
-        verktøy og teknologier for direktoratet. Faglig ressurs i 
+        verktøy og teknologier for direktoratet. Faglig ressurs i
         strategiske diskusjoner, utarbeider anbefalinger
         til styret om teknologivalg og fremtidig retning.
       en: >-
@@ -662,7 +662,7 @@ skills:
     comment:
       nb: eForms-pipeline, EC TED-ontologi
       en: eForms pipeline, EC TED ontology
-  - name: Azure 
+  - name: Azure
     level: 3
     years: 2
     comment:

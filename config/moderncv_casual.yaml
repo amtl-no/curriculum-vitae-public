@@ -38,8 +38,8 @@ theme:
 
 pre_commands:
   - >-
-    \PassOptionsToPackage{colorlinks=true,urlcolor=[rgb]{{color1_rgb}}}
-    {hyperref}
+      \PassOptionsToPackage{colorlinks=true,urlcolor=[rgb]{{color1_rgb}}}
+      {hyperref}
 
 commands:
   - \recomputelengths
@@ -49,4 +49,3 @@ commands:
   - \patchcmd{\makeletterclosing}{[3em]}{[1em]}{}{}
   - \setlength{\hintscolumnwidth}{2cm}
   - \setlength{\parskip}{0pt}
-  
