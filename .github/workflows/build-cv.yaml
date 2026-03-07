@@ -66,6 +66,7 @@ jobs:
   render:
     needs: matrix-setup
     runs-on: ubuntu-latest
+    environment: ${{ matrix.visibility }}
     strategy:
       matrix: ${{ fromJson(needs.matrix-setup.outputs.matrix) }}
 
@@ -91,13 +92,6 @@ jobs:
 
       - name: Render .tex
         env:
-          CV_EMAIL: ${{ secrets.CV_EMAIL }}
-          CV_PHONE: ${{ secrets.CV_PHONE }}
-          CV_STREET: ${{ secrets.CV_STREET }}
-          CV_CITY: ${{ secrets.CV_CITY }}
-          CV_POSTCODE: ${{ secrets.CV_POSTCODE }}
-          CV_SIGNAL: ${{ secrets.CV_SIGNAL }}
-          CV_THREEMA: ${{ secrets.CV_THREEMA }}
         run: |
           uv run python3 scripts/render.py \
           --cv data/cv.yaml \
