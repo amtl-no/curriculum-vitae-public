@@ -27,6 +27,7 @@ months:
 sections:
   profile: Profil
   experience: Arbeidserfaring
+  representation: Faglig representasjon og formidling
   education: Utdanning
   extracurricular: Utenomfaglige aktiviteter
   languages: Språkferdigheter
@@ -43,7 +44,7 @@ skill_matrix:
     column_factor: '0.60'
     descriptor: Forklaring
     level1: Grunnleggende kjennskap
-    level2: Grunnleggende og egen erfaring
+    level2: Kjennskap og egenerfaring
     level3: Bred prosjekterfaring
     level4: Dyp ekspertise
     level5: Ekspert

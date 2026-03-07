@@ -27,6 +27,7 @@ months:
 sections:
   profile: Profile
   experience: Work Experience
+  representation: Professional Representation and Communication
   education: Education
   extracurricular: Extracurricular Activities
   languages: Language Skills
@@ -41,10 +42,10 @@ skill_matrix:
     years: Years
     comment: Comment
   legend:
-    column_factor: '0.40'
+    column_factor: '0.65'
     descriptor: Legend
     level1: Basic familiarity
-    level2: Basic and own project experience
+    level2: Knowledge and own experience
     level3: Extensive project experience
     level4: Deep expertise
     level5: Expert

@@ -51,7 +51,7 @@
 %% ── Experience ───────────────────────────────────────────────────────────────
 \section{((( locale.sections.experience )))}
 
-((*- for job in cv.experience *))
+((*- for job in cv.experience | selectattr('visible', 'ne', false) *))
 ((*- set period = job.start | period_str(job.end) *))
 ((*- set bullets = job.bullets | select | list *))
 \cventry
@@ -60,14 +60,36 @@
   {((( job.employer.full | latex_escape )))}
   {((( job.location | latex_escape )))}
   {}
-  {((*- for bullet in bullets *))((( bullet | latex_escape )))\\
-((*- endfor *))}
+{((*- if job.subtitle is defined and job.subtitle *))\small\textit{((( job.subtitle | latex_escape )))}
+((*- endif *))((*- if bullets *))\begin{itemize}
+((*- for bullet in bullets *))
+    \item ((( bullet | latex_escape )))
+((*- endfor *))
+  \end{itemize}((*- endif *))}
+((*- endfor *))
+
+%% ── Representation ──────────────────────────────────────────────────────────
+\section{((( locale.sections.representation )))}
+
+((*- for entry in cv.representation | selectattr('visible', 'ne', false) *))
+((*- set period = entry.start | period_str(entry.end) *))
+((*- if entry.organisation is defined *))
+((*- set org_str = entry.organisation.short *))
+((*- else *))
+((*- set org_str = "" *))
+((*- endif *))
+\cventry
+  {((( period )))}
+  {((( entry.title | latex_escape )))}
+  {((( org_str | latex_escape )))}
+  {}{}
+  {((( entry.details | latex_escape if entry.details else "" )))}
 ((*- endfor *))
 
 %% ── Education ────────────────────────────────────────────────────────────────
 \section{((( locale.sections.education )))}
 
-((*- for edu in cv.education *))
+((*- for edu in cv.education | selectattr('visible', 'ne', false) *))
 ((*- set period = edu.start | period_str(edu.end) *))
 \cventry
   {((( period )))}
@@ -117,6 +139,6 @@
 ((* endfor *))
 
 \setcvskilllegendcolumns[][((( locale.skill_matrix.legend.column_factor )))]
-\cvskilllegend*[0.2em][((( locale.skill_matrix.legend.level1 )))][((( locale.skill_matrix.legend.level2 )))][((( locale.skill_matrix.legend.level3 )))][((( locale.skill_matrix.legend.level4 )))][((( locale.skill_matrix.legend.level5 )))]{ ((( locale.skill_matrix.legend.descriptor ))) }
+\cvskillplainlegend*[0.2em][((( locale.skill_matrix.legend.level1 )))][((( locale.skill_matrix.legend.level2 )))][((( locale.skill_matrix.legend.level3 )))][((( locale.skill_matrix.legend.level4 )))][((( locale.skill_matrix.legend.level5 )))]{ ((( locale.skill_matrix.legend.descriptor ))) }
 
 \end{document}

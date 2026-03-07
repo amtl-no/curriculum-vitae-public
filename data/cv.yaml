@@ -90,8 +90,25 @@ contact:
     day: 31
 
 profile:
-  nb: ~
-  en: ~
+  nb: >-
+    Sivilingeniør med fysikkbakgrunn — der måling uten stringens er
+    meningsløs og resultater som ikke kan reproduseres er uinteressante
+    — og anvender nå den samme disiplinen på tvers av hele datastakken,
+    fra pipeline-arkitektur til analytiske leveranser. Bringer en
+    ingeniørs instinkt for å bygge systemer som er robuste by design
+    fremfor korrekte ved en tilfeldighet. Søker en rolle der disse
+    prinsippene anvendes på datainfrastruktur hvor korrekthet og
+    sporbarhet er ikke-forhandlbare krav.
+  en: >-
+    An MSc physicist from NTNU — where measurement without rigour is
+    meaningless and results that cannot be reproduced are uninteresting
+    — and now applying that same discipline across the full data
+    stack, from pipeline architecture to analytical output. Brings an
+    engineer's instinct for building systems that are robust by design
+    rather than correct by luck. Looking to apply these principles to
+    data infrastructure where correctness and auditability are not
+    optional.
+  
 
 anchors:
   organisations:
@@ -145,6 +162,9 @@ experience:
     title:
       nb: Seniorrådgiver
       en: Senior Advisor
+    subtitle:
+      nb: Dataanalytiker, Avdeling for styring og digitalisering
+      en: Data Analyst, Department for Governance and Digitalisation
     employer: *dfo
     location:
       nb: Oslo, Norge
@@ -192,15 +212,22 @@ experience:
             mellom Norges SDK-utvidelser og byggeprosessen for
             oppstrøms-SDKen slik den defineres og vedlikeholdes av
             EU-kommisjonen.
+        - >-
+            Formidler analytiske funn til ledelse gjennom tekniske
+            rapporter og notater, og publiserer data eksternt på
+            offentlig tilgjengelige nettsider. Betjener også eksterne
+            dataforespørsler utover det som presenteres i dashbord,
+            i form av tilpassede uttrekk og leveranser. Aktivitetene
+            er forankret i direktoratets årlige tildelingsbrev.
       en:
         - >-
             Rebuilt the agency's public procurement analytics foundation.
             Replaced an erroneous ad hoc API with direct extraction of
             information from eForms XML data using intermediate data
-            transformation to RDF mirroring European Commision methodology.
-            Structured the nested public procurement data as a relational
-            model conducive for business analytics, including a double
-            snowflake semantic model in Power BI.
+            transformation to RDF mirroring European Commission
+            methodology. Structured the nested public procurement data as
+            a relational model conducive for business analytics, including
+            a double snowflake semantic model in Power BI.
         - >-
             The aforementioned analytics foundation was built as a solo
             effort in a matter of months. Finnish counterparts who reviewed
@@ -229,6 +256,14 @@ experience:
             procurement regulations and data quality constraints,
             bridging Norway's SDK extensions with the upstream
             European Commission build.
+        - >-
+            Communicates analytical findings to management through
+            technical briefs and reports, and publishes data externally
+            on publicly accessible websites. Serves external data
+            requests beyond published dashboards through tailored
+            extracts and deliveries. Activities are formally mandated
+            through the agency's annual letter of assignment.
+    visible: true
   - id: ffi
     title:
       nb: Forsker
@@ -248,8 +283,9 @@ experience:
         - >-
             Konstruerte en 1.5 kW Ytterbium-fiberlaser konfigurert
             for koherent strålekombinering, inklusive FPGA-basert
-            signalbehandling for en strålekombinerings-
-            tilbakekoblingssløyfe basert på programvaredefinerte radioer.
+            signalbehandling for en 
+            strålekombinerings-tilbakekoblingssløyfe basert på
+            programvaredefinerte radioer.
         - >-
             Designet fullautomatiserte og repeterbare eksperimentelle
             arbeidsflyter på tvers av laserlaboratoriet — fjernstyrt
@@ -262,10 +298,15 @@ experience:
             Reverskonstruerte en Japansk C#-programvaresuite for
             en fiberfusjonsspleiser for å utvide dens aktive
             opplinjeringsrutine basert på eksterne lyseffektmålinger —
-            dette muliggjorde å bruke effektavlesnigner fra vilkårlige
+            dette muliggjorde å bruke effektavlesninger fra vilkårlige
             lasereffektmålere via et tilpasset grensesnitt, og å omgå
             det GPIB-baserte utstyret spleisemaskinfabrikanten ellers
             påtrykte.
+        - >-
+            Utviklet skreddersydde programvaregrensesnitt mot
+            måleinstrumenter i Python og C#, som supplement til
+            eller erstatning for leverandørenes egne APIer der
+            disse var utilstrekkelige eller fraværende.
         - >-
             Utførte kvalifiseringstesting av lasersystemer mot
             sikkerhetsstandarder — alene eller i par med en annen
@@ -273,7 +314,10 @@ experience:
             inkludert håndholdt, våpenmontert og helikopter- eller
             flymontert utstyr, både i laboratoriet og i felten.
         - >-
-            Utviklet simulerings- og dataanalyseverktøy i C++ og Python.
+            Samarbeidet med eksterne industripartnere, herunder blant 
+            annet Nammo og Kongsberg, om bruksområder for lasersystemer.
+            Utarbeidet interne tekniske rapporter og bidro til faglig
+            formidling på tvers av organisasjonsgrenser.
       en:
         - >-
             Constructed a 1.5 kW Ytterbium fibre laser configured for
@@ -293,13 +337,48 @@ experience:
             injecting readings from arbitrary power meters via a custom
             interface, bypassing the out-of-box GPIB device lock-in.
         - >-
+            Developed custom software interfaces to measurement
+            instruments in Python and C#, supplementing or replacing
+            vendor-supplied APIs where these were insufficient or
+            absent.
+        - >-
             Performed qualification testing of laser systems against safety
             standards — sole or paired researcher — across a range of
             platforms including hand-held, weapon-mounted, and helicopter-
             or airplane-mounted equipment, both in-lab and in the field.
         - >-
-            Developed simulation and data analysis tooling in C++
-            and Python.
+            Collaborated with external industrial partners including
+            Nammo and Kongsberg on use cases for laser systems. Produced
+            internal technical reports and contributed to knowledge
+            transfer across organisational boundaries.
+    visible: true
+  - id: ffi_summers
+    title:
+      nb: Sommerstudent
+      en: Summer Intern
+    employer: *ffi
+    location:
+      nb: Kjeller, Norge
+      en: Kjeller, Norway
+    start:
+      year: 2016
+      month: 6
+    end:
+      year: 2017
+      month: 7
+    bullets:
+      nb:
+        - >-
+            Deltok i elektro-optiske målekampanjer utendørs over to somre.
+            Analyserte termiske (nær-infrarøde) og multispektrale
+            billeddatasett; planla og gjennomførte labeksperimenter.
+      en:
+        - >-
+            Participated in electro-optical measurement campaigns in the
+            field across two summers. Analysed thermal (near-infrared) and
+            multispectral image datasets; planned and conducted laboratory
+            experiments.
+    visible: true
   - id: ffi_summer_2017
     title:
       nb: Sommerstudent
@@ -324,6 +403,7 @@ experience:
             Participated in electro-optical measurement campaigns in the
             field. Planned and conducted laboratory experiments. Analysed
             collected thermal (near-infrared) imagery.
+    visible: false
   - id: ffi_summer_2016
     title:
       nb: Sommerstudent
@@ -349,6 +429,7 @@ experience:
             Participated in electro-optical measurement campaigns in the
             field. Analysed thermal (near-infrared) and multispectral image
             datasets.
+    visible: false
   - id: posten
     title:
       nb: Sesongvikar
@@ -374,6 +455,61 @@ experience:
             Registered and assessed import and export shipments under
             Norwegian customs regulations; processed restricted shipments
             and performed customs clearance.
+            
+representation:
+  - id: exep
+    title:
+      nb: Norsk representant, Expert Group on e-Procurement (EXEP)
+      en: Norwegian Representative, Expert Group on e-Procurement (EXEP)
+    organisation: *dfo
+    start:
+      year: 2025
+      month: 3
+    end: ~
+    visible: true
+    details:
+      nb: >-
+        Representerer Norge i EU-kommisjonens ekspertgruppe for
+        digitalisering av offentlige anskaffelser. Fremlegger norske
+        posisjoner og faglige funn for gruppen, og formidler
+        EU-utviklinger tilbake til norske fagmiljøer. Deltatt i
+        arbeidsgrupper i Brüssel og ved EU-kommisjonens kontor i
+        Luxembourg, inkludert samarbeid med ontologigruppen om
+        datamodellering for det komplette bildet av offentlige
+        anskaffelser, fra planlegging til gjennomføring og
+        oppfølging.
+      en: >-
+        Represents Norway in the European Commission's expert group
+        on the digitalisation of public procurement. Presents
+        Norwegian positions and findings to the group, and
+        communicates EU developments back to Norwegian stakeholders.
+        Participated in working groups in Brussels and at the
+        Commission's office in Luxembourg, including collaboration
+        with the ontology group on data modelling for the complete
+        picture of public procurement — from planning through
+        execution to follow-up.
+  - id: tech_board
+    title:
+      nb: Fast medlem, Teknologirådet
+      en: Permanent Member, Technology Advisory Board
+    organisation: *dfo
+    start:
+      year: 2026
+      month: 2
+    end: ~
+    visible: true
+    details:
+      nb: >-
+        Teknologistrategi, interne konsultasjoner og evaluering av
+        verktøy og teknologier for direktoratet. Faglig ressurs i 
+        strategiske diskusjoner, utarbeider anbefalinger
+        til styret om teknologivalg og fremtidig retning.
+      en: >-
+        Technology strategy, internal consultations, and evaluation of
+        new tools and technologies for the agency. Contributes as the
+        subject matter expert in strategic discussions and prepares
+        recommendations to the board on technology choices and future
+        direction.
 
 education:
   - id: ntnu
@@ -417,6 +553,7 @@ education:
     details:
       nb: Uteksaminert som kullets beste elev
       en: Graduated top of class
+    visible: false
 
 linguistics:
   - language:
@@ -446,7 +583,7 @@ linguistics:
     comment:
       nb: Leser teknisk dokumentasjon og EU-kommisjonsrapporter på fransk.
       en: >-
-        Reads technical documentation and European Commision reports in
+        Reads technical documentation and European Commission reports in
         French.
 
 skills:
@@ -466,14 +603,14 @@ skills:
     level: 5
     years: 10
     comment:
-      nb: ~
-      en: ~
+      nb: Byggesystem og pipeline-orkestrering
+      en: Build system and pipeline orchestration
   - name: Git
     level: 4
     years: 10
     comment:
-      nb: CI/CD-pipelines, GitHub Actions med GitHub Environments
-      en: CI/CD pipelines, GitHub Actions with GitHub Environments
+      nb: CI/CD-pipelines, GitHub Actions med Environments
+      en: CI/CD pipelines, GitHub Actions with Environments
   - name: C++
     level: 4
     years: 6
@@ -481,7 +618,7 @@ skills:
       nb: Egenutviklede simuleringer ved FFI
       en: In-house simulations at FFI
   - name: XML/XPath
-    level: 5
+    level: 4
     years: 2
     comment:
       nb: Nasjonal XPath-validator
@@ -492,6 +629,7 @@ skills:
     comment:
       nb: ~
       en: ~
+    visible: false
   - name: SQL
     level: 4
     years: 2
@@ -502,52 +640,47 @@ skills:
     level: 4
     years: 2
     comment:
-      nb: Sammensatte semantiske modeller, CI/CD-livssyklus
-      en: Composite semantic models, CI/CD lifecycle
+      nb: Semantiske modeller, CI/CD-livssyklus
+      en: Semantic models, CI/CD lifecycle
   - name: DAX
     level: 3
     years: 2
     comment:
       nb: ~
       en: ~
+    visible: false
   - name: M
     level: 3
     years: 2
     comment:
       nb: ~
       en: ~
+    visible: false
   - name: RDF/SPARQL
     level: 3
     years: 1
     comment:
-      nb: eForms-analysepipeline, speiler EU-kommisjonens ontologimetodikk
-      en: >-
-        eForms analytics pipeline, mirroring EU Commision ontology
-        methodology
-  - name: Azure Functions
+      nb: eForms-pipeline, EC TED-ontologi
+      en: eForms pipeline, EC TED ontology
+  - name: Azure 
     level: 3
     years: 2
     comment:
-      nb: ~
-      en: ~
-  - name: Azure Blob / ADLS
-    level: 3
-    years: 2
-    comment:
-      nb: ~
-      en: ~
-  - name: Azure SQL
-    level: 3
-    years: 2
-    comment:
-      nb: ~
-      en: ~
+      nb: Synapse, Functions, Blob/ADLS, SQL
+      en: Synapse, Functions, Blob/ADLS, SQL
   - name: Verilog
     level: 2
     years: 1
     comment:
-      nb: FPGA-programmering for koherent laserkombinering
-      en: FPGA programming for coherent laser combination
+      nb: FPGA-programmering, koherent strålekombinering
+      en: FPGA programming, coherent beam combination
+  - name: C#
+    level: 3
+    years: 3
+    visible: false
+    comment:
+      nb: Grensesnitt mot instrumenter og reverse engineering ved FFI
+      en: Instrument interfaces and reverse engineering at FFI
   - name: Matlab
     level: 3
     years: 7
@@ -580,7 +713,7 @@ extracurricular:
       year: 2026
       month: 2
     end: ~
-    visible: true
+    visible: false
   - id: union
     organisation: *dfo
     union: *tekna
@@ -591,7 +724,7 @@ extracurricular:
       year: 2025
       month: 5
     end: ~
-    visible: true
+    visible: false
   - id: social_committee
     organisation: *dfo
     title:
@@ -641,4 +774,4 @@ extracurricular:
         eksperimentet
       en: >-
         Awarded for conducting the best natural science experiment
-    visible: true
+    visible: false
