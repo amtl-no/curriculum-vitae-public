@@ -41,22 +41,22 @@ jobs:
           EVENT="${{ github.event_name }}"
           INPUT="${{ github.event.inputs.visibility }}"
           if [ "$EVENT" = "pull_request" ]; then
-            VIS='["public"]'
+          VIS='["public"]'
           elif [ "$EVENT" = "workflow_dispatch" ]; then
-            if [ "$INPUT" = "public" ]; then
-              VIS='["public"]'
-            elif [ "$INPUT" = "private" ]; then
-              VIS='["private"]'
-            else
-              VIS='["public","private"]'
-            fi
+          if [ "$INPUT" = "public" ]; then
+          VIS='["public"]'
+          elif [ "$INPUT" = "private" ]; then
+          VIS='["private"]'
           else
-            VIS='["public","private"]'
+          VIS='["public","private"]'
+          fi
+          else
+          VIS='["public","private"]'
           fi
           CONFIG='["moderncv_casual"]'
           MATRIX=$(printf \
-            '{"lang":["nb","en"],"visibility":%s,"config":%s}' \
-            "$VIS" "$CONFIG")
+          '{"lang":["nb","en"],"visibility":%s,"config":%s}' \
+          "$VIS" "$CONFIG")
           echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
 
   # ── Render: Python → .tex ───────────────────────────────────────────────
@@ -91,25 +91,25 @@ jobs:
 
       - name: Render .tex
         env:
-          CV_EMAIL:    ${{ secrets.CV_EMAIL }}
-          CV_PHONE:    ${{ secrets.CV_PHONE }}
-          CV_STREET:   ${{ secrets.CV_STREET }}
-          CV_CITY:     ${{ secrets.CV_CITY }}
+          CV_EMAIL: ${{ secrets.CV_EMAIL }}
+          CV_PHONE: ${{ secrets.CV_PHONE }}
+          CV_STREET: ${{ secrets.CV_STREET }}
+          CV_CITY: ${{ secrets.CV_CITY }}
           CV_POSTCODE: ${{ secrets.CV_POSTCODE }}
-          CV_SIGNAL:   ${{ secrets.CV_SIGNAL }}
-          CV_THREEMA:  ${{ secrets.CV_THREEMA }}
+          CV_SIGNAL: ${{ secrets.CV_SIGNAL }}
+          CV_THREEMA: ${{ secrets.CV_THREEMA }}
         run: |
           uv run python3 scripts/render.py \
-            --cv data/cv.yaml \
-            --config config/${{ matrix.config }}.yaml \
-            --schema config/moderncv_schema.yaml \
-            --locale data/locale/${{ matrix.lang }}.yaml \
-            --templates templates \
-            --output output \
-            --lang ${{ matrix.lang }} \
-            --env-file .env \
-            ${{ matrix.visibility == 'public' && '--public' || '' }} \
-            --no-compile
+          --cv data/cv.yaml \
+          --config config/${{ matrix.config }}.yaml \
+          --schema config/moderncv_schema.yaml \
+          --locale data/locale/${{ matrix.lang }}.yaml \
+          --templates templates \
+          --output output \
+          --lang ${{ matrix.lang }} \
+          --env-file .env \
+          ${{ matrix.visibility == 'public' && '--public' || '' }} \
+          --no-compile
 
       - name: Upload .tex
         uses: actions/upload-artifact@v4
@@ -145,11 +145,11 @@ jobs:
       - name: Compile PDF
         run: |
           docker run --rm \
-            -v ${{ github.workspace }}/output:/workspace \
-            -w /workspace \
-            ghcr.io/xu-cheng/texlive-full:latest \
-            latexmk -lualatex -interaction=nonstopmode \
-              ${{ steps.stem.outputs.value }}.tex
+          -v ${{ github.workspace }}/output:/workspace \
+          -w /workspace \
+          ghcr.io/xu-cheng/texlive-full:latest \
+          latexmk -lualatex -interaction=nonstopmode \
+          ${{ steps.stem.outputs.value }}.tex
 
       - name: Upload PDF
         uses: actions/upload-artifact@v4
