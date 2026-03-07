@@ -112,7 +112,7 @@
 
 \cvskillhead[0.2em][((( locale.skill_matrix.head.level )))][((( locale.skill_matrix.head.skill )))][((( locale.skill_matrix.head.years )))][((( locale.skill_matrix.head.comment )))]
 
-((*- for skill in cv.skills *))
+((*- for skill in cv.skills | selectattr('visible', 'ne', false) *))
 \cvskillentry*[0.2em]{}{((( skill.level )))}{((( skill.name | latex_escape )))}{((( skill.years )))}{((( skill.comment | latex_escape if skill.comment else "" )))}
 ((* endfor *))
 
