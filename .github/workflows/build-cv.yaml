@@ -91,7 +91,6 @@ jobs:
           echo "value=$STEM" >> "$GITHUB_OUTPUT"
 
       - name: Render .tex
-        env:
         run: |
           uv run python3 scripts/render.py \
           --cv data/cv.yaml \
