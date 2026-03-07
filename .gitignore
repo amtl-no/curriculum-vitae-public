@@ -12,5 +12,4 @@ __pycache__/
 *.toc
 
 # Generated files only
-output/*.tex
-output/*.pdf
+output/

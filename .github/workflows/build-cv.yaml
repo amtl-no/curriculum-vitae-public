@@ -1,0 +1,199 @@
+# yamllint disable rule:line-length
+# SPDX-License-Identifier: CC-BY-4.0
+# SPDX-FileCopyrightText: 2026 Arne Magnus Tveita Løken <212174338+amtl-no@users.noreply.github.com>
+# yamllint enable rule:line-length
+---
+name: 'Build CV'
+
+on: # yamllint disable-line rule:truthy
+  pull_request:
+    branches: [main]
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch: # yamllint disable-line rule:truthy
+
+    inputs:
+      visibility:
+        description: 'Which builds to produce'
+        required: true
+        default: public
+        type: choice
+        options:
+          - public
+          - private
+          - all
+
+jobs:
+
+  # ── Compute matrix ───────────────────────────────────────────────────────
+  # Derives visibility from the trigger so render and compile share
+  # one matrix definition with no exclude logic.
+
+  matrix-setup:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set.outputs.matrix }}
+    steps:
+      - name: Set matrix
+        id: set
+        run: |
+          EVENT="${{ github.event_name }}"
+          INPUT="${{ github.event.inputs.visibility }}"
+          if [ "$EVENT" = "pull_request" ]; then
+            VIS='["public"]'
+          elif [ "$EVENT" = "workflow_dispatch" ]; then
+            if [ "$INPUT" = "public" ]; then
+              VIS='["public"]'
+            elif [ "$INPUT" = "private" ]; then
+              VIS='["private"]'
+            else
+              VIS='["public","private"]'
+            fi
+          else
+            VIS='["public","private"]'
+          fi
+          CONFIG='["moderncv_casual"]'
+          MATRIX=$(printf \
+            '{"lang":["nb","en"],"visibility":%s,"config":%s}' \
+            "$VIS" "$CONFIG")
+          echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
+
+  # ── Render: Python → .tex ───────────────────────────────────────────────
+  # Runs on the host runner — no LaTeX needed.
+  # Uploads each .tex as a short-lived artifact for the compile job.
+
+  render:
+    needs: matrix-setup
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{ fromJson(needs.matrix-setup.outputs.matrix) }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          python-version: '3.12'
+
+      - name: Install Python dependencies
+        run: uv sync
+
+      - name: Compute stem
+        id: stem
+        run: |
+          STEM="cv_${{ matrix.lang }}_${{ matrix.visibility }}"
+          STEM="${STEM}_${{ matrix.config }}"
+          echo "value=$STEM" >> "$GITHUB_OUTPUT"
+
+      - name: Render .tex
+        env:
+          CV_EMAIL:    ${{ secrets.CV_EMAIL }}
+          CV_PHONE:    ${{ secrets.CV_PHONE }}
+          CV_STREET:   ${{ secrets.CV_STREET }}
+          CV_CITY:     ${{ secrets.CV_CITY }}
+          CV_POSTCODE: ${{ secrets.CV_POSTCODE }}
+          CV_SIGNAL:   ${{ secrets.CV_SIGNAL }}
+          CV_THREEMA:  ${{ secrets.CV_THREEMA }}
+        run: |
+          uv run python3 scripts/render.py \
+            --cv data/cv.yaml \
+            --config config/${{ matrix.config }}.yaml \
+            --schema config/moderncv_schema.yaml \
+            --locale data/locale/${{ matrix.lang }}.yaml \
+            --templates templates \
+            --output output \
+            --lang ${{ matrix.lang }} \
+            --env-file .env \
+            ${{ matrix.visibility == 'public' && '--public' || '' }} \
+            --no-compile
+
+      - name: Upload .tex
+        uses: actions/upload-artifact@v4
+        with:
+          name: tex-${{ steps.stem.outputs.value }}
+          path: output/${{ steps.stem.outputs.value }}.tex
+          retention-days: 1
+
+  # ── Compile: .tex → .pdf via Docker ─────────────────────────────────────
+  # Downloads the .tex artifact and compiles via the TeX Live Docker image.
+  # Source Serif Pro is bundled in TeX Live — no font install needed.
+
+  compile:
+    needs: [matrix-setup, render]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{ fromJson(needs.matrix-setup.outputs.matrix) }}
+
+    steps:
+      - name: Compute stem
+        id: stem
+        run: |
+          STEM="cv_${{ matrix.lang }}_${{ matrix.visibility }}"
+          STEM="${STEM}_${{ matrix.config }}"
+          echo "value=$STEM" >> "$GITHUB_OUTPUT"
+
+      - name: Download .tex
+        uses: actions/download-artifact@v4
+        with:
+          name: tex-${{ steps.stem.outputs.value }}
+          path: output
+
+      - name: Compile PDF
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}/output:/workspace \
+            -w /workspace \
+            ghcr.io/xu-cheng/texlive-full:latest \
+            latexmk -lualatex -interaction=nonstopmode \
+              ${{ steps.stem.outputs.value }}.tex
+
+      - name: Upload PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdf-${{ steps.stem.outputs.value }}
+          path: output/${{ steps.stem.outputs.value }}.pdf
+          retention-days: 90
+
+  # ── Publish: bundle and release ─────────────────────────────────────────
+  # Merges per-cell PDF artifacts into public/private bundles.
+  # Attaches public PDFs to the GitHub Release on tags.
+
+  publish:
+    needs: compile
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download all PDFs
+        uses: actions/download-artifact@v4
+        with:
+          pattern: pdf-*
+          merge-multiple: true
+          path: output
+
+      - name: Upload public bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: cv-public
+          path: output/cv_*_public_*.pdf
+          retention-days: 90
+        continue-on-error: true
+
+      - name: Upload private bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: cv-private
+          path: output/cv_*_private_*.pdf
+          retention-days: 90
+        continue-on-error: true
+
+      - name: Attach public PDFs to release
+        if: >-
+          github.event_name == 'push' &&
+          startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: output/cv_*_public_*.pdf
