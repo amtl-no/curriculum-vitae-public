@@ -528,14 +528,14 @@ education:
       month: 6
     details:
       nb: >-
-        Retning: Teknisk fysikk.
-        Masteroppgave: Simulering av partikkeltransport i hav- og luftsystemer.
-        Benyttet Python, C/C++ og Fortran i egenutviklet beregningspipeline.
+        Retning: Teknisk fysikk. Masteroppgave: Simulering av
+        partikkeltransport i hav- og luftsystemer, ved hjelp av
+        egenutviklet beregningspipeline i Python, C/C++ og Fortran.
       en: >-
-        Specialisation: Applied Physics.
-        Thesis: Simulation of particle transport in oceanic and atmospheric
-        systems.
-        Developed custom computation pipeline in Python, C/C++ and Fortran.
+        Specialisation: Applied Physics. Thesis: Simulation of
+        particle transport in oceanic and atmospheric systems,
+        using a custom computation pipeline in Python, C/C++
+        and Fortran.
   - id: vgs
     degree:
       nb: Videregående skole
