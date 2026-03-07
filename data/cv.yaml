@@ -155,9 +155,78 @@ experience:
     end: ~
     bullets:
       nb:
-        - ~
+        - >-
+          Gjenoppbygde direktoratets analytiske fundament for offentlige
+          anskaffelser. Erstattet et feilbeheftet ad hoc-API med direkte
+          uttrekk av informasjon fra eForms-XML-data ved hjelp av
+          mellomliggende datatransformasjon til RDF etter EU-kommisjonens
+          metodikk. Strukturerte de nøstede anskaffelsesdataene
+          som en relasjonsmodell tilrettelagt for forretningsanalyse,
+          inkludert en dobbel stjerne-semantisk modell i Power BI.
+        - >-
+          Det nevnte analytiske fundamentet ble bygget som en solooppgave
+          i løpet av noen måneder. Finske fagfeller som vurderte modellen
+          og metodikken satte av et dedikert team for å replikere den.
+        - >-
+          Primær pådriver for dev/test/produksjons-miljødisiplin på tvers
+          av alle analytiske leveranser — Power BI-semantiske modeller,
+          datapipelines og LLM-arbeidsflyter vedlikeholdes hver for seg i
+          dedikerte arbeidsområder via CI/CD, innenfor direktoratets
+          Azure-lakehouse-arkitektur.
+        - >-
+          Mestret, utvidet og robustifiserte organisasjonens
+          LLM-analysepipeline — anvendte den på nye fagområder,
+          dekomponerte komplekse systemprompt til kjedede delprompt,
+          erstattet JSON med XML som mellomliggende datautvekslingsformat
+          for økt robusthet, og utformet relasjonsbaserte utdatamodeller
+          for strukturerte analyseresultater.
+        - >-
+          Designet og bygget en CI/CD-pipeline for innebygging av
+          sammensatte Power BI-rapporter via tokenbasert autentisering,
+          noe som muliggjør skalerbar flermodellrapportering i produksjon.
+        - >-
+          Domeneekspert for den norske eForms-SDKens XPath-valideringslag
+          — utformer regler som håndhever samsvar med nasjonalt
+          anskaffelsesregelverk og datakvalitetskrav, og bygger bro mellom
+          Norges SDK-utvidelser og byggeprosessen for oppstrøms-SDKen slik
+          den defineres og vedlikeholdes av EU-kommisjonen.
       en:
-        - ~
+        - >-
+          Rebuilt the agency's public procurement analytics foundation.
+          Replaced an erroneous ad hoc API with direct extraction of
+          information from eForms XML data using intermediate data 
+          transformation to RDF mirroring European Commision methodology.
+          Structured the nested public procurement data as a relational
+          model conducive for business analytics, including a double
+          snowflake semantic model in Power BI.
+        - >-
+          The aforementioned analytics foundation was built as a solo
+          effort in a matter of months. Finnish counterparts who reviewed
+          the model and methodology assigned a dedicated team to
+          replicate it.
+        - >-
+          Primary driver of dev/test/production environment discipline
+          across all analytics deliverables. Power BI semantic models,
+          data pipelines, and LLM workflows are each maintained across
+          dedicated workspaces via CI/CD, within the agency's Azure
+          lakehouse architecture.
+        - >-
+          Mastered, extended, and hardened the organisation's LLM
+          analysis pipeline — applying it to new subject matter,
+          decomposing complex system prompts into chained sub-prompts,
+          replacing JSON with XML as the intermediate exchange format
+          for robustness, and designing relational output models for
+          structured analysis results.
+        - >-
+          Designed and built a CI/CD pipeline for composite Power BI
+          report embedding via token-based authentication, enabling
+          scalable multi-model reporting in production.
+        - >-
+          Domain lead for the Norwegian eForms SDK's XPath validation
+          layer, authoring rules enforcing compliance with national
+          procurement regulations and data quality constraints,
+          bridging Norway's SDK extensions with the upstream
+          European Commission build.
   - id: ffi
     title:
       nb: Forsker
@@ -174,9 +243,61 @@ experience:
       month: 11
     bullets:
       nb:
-        - ~
+        - >-
+          Konstruerte en 1.5 kW Ytterbium-fiberlaser konfigurert
+          for koherent strålekombinering, inklusive FPGA-basert
+          signalbehandling for en strålekombinerings-tilbakekoblingssløyfe
+          basert på programvaredefinerte radioer.
+        - >-
+          Designet fullautomatiserte og repeterbare eksperimentelle
+          arbeidsflyter på tvers av laserlaboratoriet — fjernstyrt
+          instrumentering, skreddersydde maskinvaregrensesnitt,
+          kretskort, Teensy-programvare, og 3D-printede komponenter.
+          Omgikk nettverksbegrensninger ved hjelp av maskinvarebaserte
+          løsninger for å muliggjøre fjernstyring fra dedikerte
+          arbeidsstasjoner per optiske bord.
+        - >-
+          Reverskonstruerte en Japansk C#-programvaresuite for
+          en fiberfusjonsspleiser for å utvide dens aktive
+          opplinjeringsrutine basert på eksterne lyseffektmålinger —
+          dette muliggjorde å bruke effektavlesnigner fra vilkårlige
+          lasereffektmålere via et tilpasset grensesnitt, og å omgå
+          det GPIB-baserte utstyret spleisemaskinfabrikanten ellers
+          påtrykte.
+        - >-
+          Utførte kvalifiseringstesting av lasersystemer mot
+          sikkerhetsstandarder — alene eller i par med en annen
+          vitenskapelig kollega — på tvers av en rekke plattformer,
+          inkludert håndholdt, våpenmontert og helikopter- eller
+          flymontert utstyr, både i laboratoriet og i felten.
+        - >-
+          Utviklet simulerings- og dataanalyseverktøy i C++ og Python.
       en:
-        - ~
+        - >-
+          Constructed a 1.5 kW Ytterbium fibre laser configured for
+          coherent beam combination, including FPGA-based signal
+          processing for software-defined radio approaches to the
+          combination feedback loop.
+        - >-
+          Engineered fully automated, repeatable experimental workflows
+          across the laser lab — remote-controlled instrumentation,
+          custom hardware interfaces, circuit boards, Teensy firmware,
+          and 3D-printed components. Circumvented network restrictions
+          through hardware workarounds enabling remote operation from
+          dedicated per-table workstations.
+        - >-
+          Reverse-engineered a Japanese C# control suite for a fusion
+          splicer to extend its power meter alignment capability —
+          injecting readings from arbitrary power meters via a custom
+          interface, bypassing the out-of-box GPIB device lock-in.
+        - >-
+          Performed qualification testing of laser systems against safety
+          standards — sole or paired researcher — across a range of
+          platforms including hand-held, weapon-mounted, and helicopter-
+          or airplane-mounted equipment, both in-lab and in the field. 
+        - >-
+          Developed simulation and data analysis tooling in C++
+          and Python.
   - id: ffi_summer_2017
     title:
       nb: Sommerstudent
@@ -193,9 +314,14 @@ experience:
       month: 7
     bullets:
       nb:
-        - ~
+        - >-
+          Deltok i elektro-optiske målekampanjer utendørs. Analyserte
+          innhentede termiske (nær-infrarøde) bilder.
       en:
-        - ~
+        - >-
+          Participated in electro-optical measurement campaigns in the
+          field. Planned and conducted laboratory experiments. Analysed
+          collected thermal (near-infrared) imagery.
   - id: ffi_summer_2016
     title:
       nb: Sommerstudent
@@ -212,9 +338,15 @@ experience:
       month: 8
     bullets:
       nb:
-        - ~
+        - >-
+          Deltok i elektro-optiske målekampanjer utendørs. Utførte
+          analyse av termiske (nær-infrarøde) og multispektrale
+          billeddatasett.
       en:
-        - ~
+        - >-
+          Participated in electro-optical measurement campaigns in the
+          field. Analysed thermal (near-infrared) and multispectral image
+          datasets.
   - id: posten
     title:
       nb: Sesongvikar
@@ -231,9 +363,15 @@ experience:
       month: 6
     bullets:
       nb:
-        - ~
+        - >-
+          Registrerte og vurderte import- og eksportsendinger etter norske
+          tollregler; behandlet restriksjonsbelagte forsendelser, og
+          utførte fortollinger.
       en:
-        - ~
+        - >-
+          Registered and assessed import and export shipments under
+          Norwegian customs regulations; processed restricted shipments
+          and performed customs clearance.
 
 education:
   - id: ntnu
@@ -304,8 +442,10 @@ linguistics:
       nb: Grunnleggende
       en: Basic
     comment:
-      nb: ~
-      en: ~
+      nb: Leser teknisk dokumentasjon og EU-kommisjonsrapporter på fransk.
+      en: >-
+        Reads technical documentation and European Commision reports in
+        French.
 
 skills:
   - name: Python
@@ -320,12 +460,18 @@ skills:
     comment:
       nb: ~
       en: ~
-  - name: Git
-    level: 4
+  - name: Make
+    level: 5
     years: 10
     comment:
       nb: ~
       en: ~
+  - name: Git
+    level: 4
+    years: 10
+    comment:
+      nb: CI/CD-pipelines, GitHub Actions med GitHub Environments
+      en: CI/CD pipelines, GitHub Actions with GitHub Environments
   - name: C++
     level: 4
     years: 6
@@ -354,8 +500,8 @@ skills:
     level: 4
     years: 2
     comment:
-      nb: ~
-      en: ~
+      nb: Sammensatte semantiske modeller, CI/CD-livssyklus
+      en: Composite semantic models, CI/CD lifecycle
   - name: DAX
     level: 3
     years: 2
@@ -368,21 +514,56 @@ skills:
     comment:
       nb: ~
       en: ~
+  - name: RDF/SPARQL
+    level: 3
+    years: 1
+    comment:
+      nb: eForms-analysepipeline, speiler EU-kommisjonens ontologimetodikk
+      en: >-
+        eForms analytics pipeline, mirroring EU Commision ontology
+        methodology
+  - name: Azure Functions
+    level: 3
+    years: 2
+    comment:
+      nb: ~
+      en: ~
+  - name: Azure Blob / ADLS
+    level: 3
+    years: 2
+    comment:
+      nb: ~
+      en: ~
+  - name: Azure SQL
+    level: 3
+    years: 2
+    comment:
+      nb: ~
+      en: ~
+  - name: Verilog
+    level: 2
+    years: 1
+    comment:
+      nb: FPGA-programmering for koherent laserkombinering
+      en: FPGA programming for coherent laser combination
   - name: Matlab
     level: 3
     years: 7
+    visible: false
     comment:
       nb: ~
       en: ~
   - name: Fortran
     level: 3
     years: 4
+    visible: false
     comment:
       nb: ~
       en: ~
   - name: Jinja2
     level: 3
     years: 1
+    visible: false
     comment:
       nb: ~
       en: ~
