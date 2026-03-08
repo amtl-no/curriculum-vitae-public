@@ -96,9 +96,9 @@ profile:
     være reproduserbare for å være interessante. Anvender nå den samme
     disiplinen på dataplattformer og analytiske pipelines — fra
     datamodellering til produksjonssetting. Bringer en ingeniørs instinkt
-    for å bygge systemer som er robuste ved design fremfor korrekte ved en 
-    tilfeldighet. Søker roller der disse prinsippene anvendes på 
-    datainfrastruktur hvor korrekthet og sporbarhet er ikke-forhandlbare 
+    for å bygge systemer som er robuste ved design fremfor korrekte ved en
+    tilfeldighet. Søker roller der disse prinsippene anvendes på
+    datainfrastruktur hvor korrekthet og sporbarhet er ikke-forhandlbare
     krav.
   en: >-
     An MSc physicist from NTNU — where measurement without rigour is
@@ -186,7 +186,7 @@ experience:
             Bygget hele det nevnte analytiske fundamentet alene i løpet av
             noen måneder. Plattformen analyserer alle publiserte
             eForms-kunngjøringer om offentlige anskaffelser i Norge. Finske
-            fagfeller som vurderte modellen og metodikken satte av et 
+            fagfeller som vurderte modellen og metodikken satte av et
             dedikert team for å replikere den.
         - >-
             Primær pådriver for dev/test/produksjons-miljødisiplin på tvers
