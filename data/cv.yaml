@@ -113,8 +113,8 @@ anchors:
   organisations:
     dfo: &dfo
       full:
-        nb: Direktoratet for Forvaltning og Økonomistyring
-        en: The Norwegian Agency for Finance and Public Management
+        nb: Direktoratet for Forvaltning og Økonomistyring 
+        en: The Norwegian Agency for Finance and Public Management 
       short:
         nb: DFØ
         en: DFØ

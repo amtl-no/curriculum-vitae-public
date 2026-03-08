@@ -57,7 +57,7 @@
 \cventry
   {((( period )))}
   {((( job.title | latex_escape )))}
-  {((( job.employer.full | latex_escape )))}
+  {((( job.employer.full | latex_escape )))((*- if job.employer.short != job.employer.full *)) (((job.employer.short | latex_escape)))((*- endif *))}
   {((( job.location | latex_escape )))}
   {}
 {((*- if job.subtitle is defined and job.subtitle *))\small\textit{((( job.subtitle | latex_escape )))}
