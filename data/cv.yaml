@@ -91,24 +91,23 @@ contact:
 
 profile:
   nb: >-
-    Sivilingeniør med fysikkbakgrunn — der måling uten stringens er
-    meningsløs og resultater som ikke kan reproduseres er uinteressante
-    — og anvender nå den samme disiplinen på tvers av hele datastakken,
-    fra pipeline-arkitektur til analytiske leveranser. Bringer en
-    ingeniørs instinkt for å bygge systemer som er robuste by design
-    fremfor korrekte ved en tilfeldighet. Søker en rolle der disse
-    prinsippene anvendes på datainfrastruktur hvor korrekthet og
-    sporbarhet er ikke-forhandlbare krav.
+    Sivilingeniør med fysikkbakgrunn, med bakgrunn fra eksperimentelle
+    systemer der målinger uten stringens er meningsløse og resultater må
+    være reproduserbare for å være interessante. Anvender nå den samme
+    disiplinen på dataplattformer og analytiske pipelines — fra
+    datamodellering til produksjonssetting. Bringer en ingeniørs instinkt
+    for å bygge systemer som er robuste ved design fremfor korrekte ved en 
+    tilfeldighet. Søker roller der disse prinsippene anvendes på 
+    datainfrastruktur hvor korrekthet og sporbarhet er ikke-forhandlbare 
+    krav.
   en: >-
     An MSc physicist from NTNU — where measurement without rigour is
     meaningless and results that cannot be reproduced are uninteresting
-    — and now applying that same discipline across the full data
-    stack, from pipeline architecture to analytical output. Brings an
-    engineer's instinct for building systems that are robust by design
-    rather than correct by luck. Looking to apply these principles to
-    data infrastructure where correctness and auditability are not
-    optional.
-
+    — now applying that same discipline on data platforms and analytics
+    pipelines, from data modelling to production. Brings an engineer's
+    instinct for building systems that are robust by design rather than
+    correct by luck. Looking to apply these principles to data
+    infrastructure where correctness and auditability are non-negotiable.
 
 anchors:
   organisations:
@@ -184,9 +183,11 @@ experience:
             som en relasjonsmodell tilrettelagt for forretningsanalyse,
             inkludert en dobbel stjerne-semantisk modell i Power BI.
         - >-
-            Det nevnte analytiske fundamentet ble bygget som en solooppgave
-            i løpet av noen måneder. Finske fagfeller som vurderte modellen
-            og metodikken satte av et dedikert team for å replikere den.
+            Bygget hele det nevnte analytiske fundamentet alene i løpet av
+            noen måneder. Plattformen analyserer alle publiserte
+            eForms-kunngjøringer om offentlige anskaffelser i Norge. Finske
+            fagfeller som vurderte modellen og metodikken satte av et 
+            dedikert team for å replikere den.
         - >-
             Primær pådriver for dev/test/produksjons-miljødisiplin på tvers
             av alle analytiske leveranser — Power BI-semantiske modeller,
@@ -198,7 +199,8 @@ experience:
             LLM-analysepipeline — anvendte den på nye fagområder,
             dekomponerte komplekse systemprompt til kjedede delprompt,
             erstattet JSON med XML som mellomliggende datautvekslingsformat
-            for økt robusthet, og utformet relasjonsbaserte utdatamodeller
+            for økt robusthet og mer deterministisk analysestrøm gjennom
+            prosesserings-pipelinen. Utformet relasjonsbaserte utdatamodeller
             for strukturerte analyseresultater.
         - >-
             Designet og bygget en CI/CD-pipeline for innebygging av
@@ -230,9 +232,10 @@ experience:
             a double snowflake semantic model in Power BI.
         - >-
             The aforementioned analytics foundation was built as a solo
-            effort in a matter of months. Finnish counterparts who reviewed
-            the model and methodology assigned a dedicated team to
-            replicate it.
+            effort in a matter of months. The platform analyses all published
+            eForms notices on public procurement in Norway. Finnish
+            counterparts who reviewed the model and methodology assigned a
+            dedicated team to replicate it.
         - >-
             Primary driver of dev/test/production environment discipline
             across all analytics deliverables. Power BI semantic models,
@@ -244,7 +247,8 @@ experience:
             analysis pipeline — applying it to new subject matter,
             decomposing complex system prompts into chained sub-prompts,
             replacing JSON with XML as the intermediate exchange format
-            for robustness, and designing relational output models for
+            for robustness and a more deterministic analysis flow through
+            the processing pipeline. Designed relational output models for
             structured analysis results.
         - >-
             Designed and built a CI/CD pipeline for composite Power BI
@@ -578,8 +582,8 @@ linguistics:
       nb: Fransk
       en: French
     level:
-      nb: Grunnleggende
-      en: Basic
+      nb: Middels
+      en: Intermediate
     comment:
       nb: Leser teknisk dokumentasjon og EU-kommisjonsrapporter på fransk.
       en: >-
