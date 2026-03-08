@@ -71,7 +71,7 @@ contact:
       visible: true
       secret: true
   address:
-    visible: false
+    visible: true
     street:
       value: ~
       secret: true
@@ -443,7 +443,7 @@ experience:
       month: 6
     end:
       year: 2018
-      month: 6
+      month: 3
     bullets:
       nb:
         - >-
