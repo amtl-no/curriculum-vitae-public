@@ -39,6 +39,20 @@ define RENDER
 		$(3)
 endef
 
+define RENDER_LETTER
+	$(PYTHON) $(SCRIPT) \
+		--cv $(CV) \
+		--config $(CONFIG) \
+		--schema $(SCHEMA) \
+		--locale $(LOCALES)/$(2).yaml \
+		--templates $(TEMPLATES) \
+		--output $(OUTPUT) \
+		--lang $(2) \
+		--env-file .env \
+		--letter $(1) \
+		$(3)
+endef
+
 # ── Primary targets ───────────────────────────────────────────────────────────
 
 .PHONY: all nb en nb-public en-public all-public tex-only \
@@ -70,6 +84,18 @@ all-public: nb-public en-public
 tex-only:
 	$(call RENDER,$(CONFIG),nb,--no-compile)
 	$(call RENDER,$(CONFIG),en,--no-compile)
+
+# ── Application letters ───────────────────────────────────────────────────────
+
+LETTERS   := data/applications
+
+## letter-finanstilsynet: Render Finanstilsynet løsningsarkitekt letter
+letter-finanstilsynet:
+	$(call RENDER_LETTER,$(LETTERS)/finanstilsynet/solution_architect.yaml,nb,)
+
+## letter-finanstilsynet-public: Public variant (no personal data)
+letter-finanstilsynet-public:
+	$(call RENDER_LETTER,$(LETTERS)/finanstilsynet/solution_architect.yaml,nb,--public)
 
 # ── Theme shortcuts ───────────────────────────────────────────────────────────
 

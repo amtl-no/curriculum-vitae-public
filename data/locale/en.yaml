@@ -53,3 +53,6 @@ skill_matrix:
 linguistics:
   descriptor: Language
   level: Proficiency
+
+letter:
+  subject_pattern: 'Application for the position of {title} at {organisation}'

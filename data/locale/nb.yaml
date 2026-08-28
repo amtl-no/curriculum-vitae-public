@@ -52,3 +52,6 @@ skill_matrix:
 linguistics:
   descriptor: Språk
   level: Nivå
+
+letter:
+  subject_pattern: 'Søknad på stillingen som {title} i {organisation}'

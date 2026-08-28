@@ -20,6 +20,7 @@ Usage:
 import argparse
 import os
 import re
+import shutil
 import subprocess
 import sys
 from datetime import date
@@ -88,6 +89,12 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         default=None,
         help="Path to typesetting schema YAML (e.g. config/schema.yaml)",
+    )
+    parser.add_argument(
+        "--letter",
+        type=Path,
+        default=None,
+        help="Path to letter YAML (enables letter mode)"
     )
     return parser.parse_args()
 
@@ -393,6 +400,31 @@ def render(
         cv=cv, cfg=cfg, locale=locale, lang=lang, cfg_name=cfg["_name"]
     )
 
+def render_letter(
+    cv: dict,
+    letter: dict,
+    cfg: dict,
+    locale: dict,
+    lang: str,
+    templates_dir: Path,
+) -> str:
+    """Render a letter from CV and letter data into a LaTeX string."""
+    env = build_jinja_env(templates_dir)
+    env.filters["format_date"] = make_format_date(locale)
+    env.filters["render_package"] = make_render_package(lang)
+    env.filters["period_str"] = make_period_str(locale)
+    env.filters["latex_escape"] = latex_escape
+    template = env.get_template("moderncv/letter.tex.j2")
+    return template.render(
+        cv=cv,
+        letter=letter,
+        cfg=cfg,
+        locale=locale,
+        lang=lang,
+        cfg_name=cfg["_name"],
+        today=date.today(),
+    )
+
 
 # ── Compilation ──────────────────────────────────────────────────────────────
 
@@ -463,11 +495,24 @@ def main() -> None:
     cfg = load_config(args.config, schema_path=args.schema)
     locale = load_yaml(args.locale)
 
-    tex_source = render(cv, cfg, locale, args.lang, args.templates)
+    if args.letter:
+        raw_letter = load_yaml(args.letter)
+        letter_lang_keys = {"nb", "en"}
+        letter_resolver = make_resolver(letter_lang_keys)
+        letter = letter_resolver(raw_letter, args.lang)
 
-    config_stem = args.config.stem
-    visibility = "public" if args.public else "private"
-    stem = f"cv_{args.lang}_{visibility}_{config_stem}"
+        tex_source = render_letter(
+            cv, letter, cfg, locale, args.lang, args.templates
+        )
+        letter_id = raw_letter["meta"]["id"]
+        visibility = "public" if args.public else "private"
+        stem = f"letter_{letter_id}_{args.lang}_{visibility}"
+    else:
+        # ── CV mode ───────────────────────────────────────────────────
+        tex_source = render(cv, cfg, locale, args.lang, args.templates)
+        config_stem = args.config.stem
+        visibility = "public" if args.public else "private"
+        stem = f"cv_{args.lang}_{visibility}_{config_stem}"
 
     tex_path = args.output / f"{stem}.tex"
     tex_path.write_text(tex_source, encoding="utf-8")
@@ -480,7 +525,16 @@ def main() -> None:
         "keywords": xmp_meta["keywords"][args.lang],
     }
     write_xmpdata(tex_path, xmp)
+
     print(f"Rendered  -> {tex_path}")
+
+    # Copy assets to output so relative paths in .tex resolve correctly
+    assets_src = args.cv.parent.parent / "assets"
+    if assets_src.is_dir():
+        assets_dst = args.output / "assets"
+        if assets_dst.exists():
+            shutil.rmtree(assets_dst)
+        shutil.copytree(assets_src, assets_dst)
 
     if not args.no_compile:
         compile_pdf(tex_path)
