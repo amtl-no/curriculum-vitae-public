@@ -5,29 +5,29 @@
 # yamllint enable rule:line-length
 ---
 meta:
-  author: Arne Magnus Tveita Løken
-  languages: [nb, en]
-  default_language: nb
+  author: 'Arne Magnus Tveita Løken'
+  languages: ['nb', 'en']
+  default_language: 'nb'
   version: '0.1.0'
   xmp:
     title:
       nb: 'Curriculum Vitae \\textemdash\\ {author}'
       en: 'Curriculum Vitae \\textemdash\\ {author}'
     keywords:
-      nb: CV
-      en: CV
+      nb: 'CV'
+      en: 'CV'
     lang_tag:
-      nb: nb-NO
-      en: en-GB
+      nb: 'nb-NO'
+      en: 'en-GB'
   licenses:
     tooling:
-      spdx: Apache-2.0
-      url: https://spdx.org/licenses/Apache-2.0.html
+      spdx: 'Apache-2.0'
+      url: 'https://spdx.org/licenses/Apache-2.0.html'
     content:
-      spdx: CC-BY-4.0
-      url: https://spdx.org/licenses/CC-BY-4.0.html
+      spdx: 'CC-BY-4.0'
+      url: 'https://spdx.org/licenses/CC-BY-4.0.html'
   personal_data:
-    gdpr_basis: legitimate_interest
+    gdpr_basis: 'legitimate_interest'
     visibility:
       public: false
       note: >-
@@ -37,10 +37,10 @@ meta:
 
 contact:
   name:
-    given: Arne Magnus
-    middle: Tveita
-    family: Løken
-  website: amtl.no
+    given: 'Arne Magnus'
+    middle: 'Tveita'
+    family: 'Løken'
+  website: 'amtl.no'
   email:
     value: ~
     visible: true
@@ -51,15 +51,15 @@ contact:
     secret: true
   socials:
     linkedin:
-      handle: arne-magnus-tveita-loken
+      handle: 'arne-magnus-tveita-loken'
       visible: true
       secret: false
     github:
-      handle: amtl-no
+      handle: 'amtl-no'
       visible: true
       secret: false
     gitlab:
-      handle: amtl-no
+      handle: 'amtl-no'
       visible: true
       secret: false
     signal:
@@ -82,8 +82,8 @@ contact:
       value: ~
       secret: true
     country:
-      nb: Norge
-      en: Norway
+      nb: 'Norge'
+      en: 'Norway'
   birthday:
     year: 1994
     month: 5
@@ -190,10 +190,11 @@ experience:
             dedikert team for å replikere den.
         - >-
             Primær pådriver for dev/test/produksjons-miljødisiplin på tvers
-            av alle analytiske leveranser — Power BI-semantiske modeller,
-            datapipelines og LLM-arbeidsflyter vedlikeholdes hver for seg i
+            av analytiske leveranser — Power BI-modeller,
+            datapipelines og LLM-arbeidsflyter vedlikeholdes separat i
             dedikerte arbeidsområder via CI/CD, innenfor direktoratets
-            Azure-lakehouse-arkitektur.
+            Azure-lakehouse-arkitektur (medaljongmodell:
+            rå/foredlet/kuratert sone).
         - >-
             Mestret, utvidet og robustifiserte organisasjonens
             LLM-analysepipeline — anvendte den på nye fagområder,
@@ -238,10 +239,11 @@ experience:
             dedicated team to replicate it.
         - >-
             Primary driver of dev/test/production environment discipline
-            across all analytics deliverables. Power BI semantic models,
-            data pipelines, and LLM workflows are each maintained across
-            dedicated workspaces via CI/CD, within the agency's Azure
-            lakehouse architecture.
+            across analytics deliverables. POower BI models, data
+            pipelines, and LLM workflows are each maintaned separately
+            across dedicated workspaces via CI/CD, within the agency's
+            Azure lakehous architecture (medallion model:
+            raw/refined/curated). 
         - >-
             Mastered, extended, and hardened the organisation's LLM
             analysis pipeline — applying it to new subject matter,
@@ -603,6 +605,7 @@ skills:
     comment:
       nb: ~
       en: ~
+    visible: false
   - name: Make
     level: 5
     years: 10
@@ -646,6 +649,18 @@ skills:
     comment:
       nb: Semantiske modeller, CI/CD-livssyklus
       en: Semantic models, CI/CD lifecycle
+  - name: Microsoft Fabric
+    level: 3
+    years: 2
+    comment:
+      nb: Egenutviklet ekstern modellpublisering
+      en: Self-developed solution for external publication
+  - name: LLM/Prompt Engineering
+    level: 3
+    years: 2
+    comment:
+      nb: Prompt-dekomponering, produksjonsrobustifisering
+      en: Prompt decomposing, production robustification
   - name: DAX
     level: 3
     years: 2
@@ -662,7 +677,7 @@ skills:
     visible: false
   - name: RDF/SPARQL
     level: 3
-    years: 1
+    years: 2
     comment:
       nb: eForms-pipeline, EC TED-ontologi
       en: eForms pipeline, EC TED ontology
@@ -678,6 +693,7 @@ skills:
     comment:
       nb: FPGA-programmering, koherent strålekombinering
       en: FPGA programming, coherent beam combination
+    visible: false
   - name: C#
     level: 3
     years: 3

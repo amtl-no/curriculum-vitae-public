@@ -20,10 +20,10 @@ documentclass:
 packages:
   - name: geometry
     options:
-      top: 0.85in
+      top: 0.65in
       bottom: 0.85in
-      left: 0.85in
-      right: 0.85in
+      left: 0.75in
+      right: 0.75in
   - name: babel
     options:
       lang: true
@@ -35,6 +35,10 @@ packages:
 theme:
   style: casual
   color: blue
+  
+photo:
+  file: 'assets/photo.jpg'
+  size: '48pt'
 
 pre_commands:
   - >-
@@ -46,6 +50,7 @@ commands:
   - \setlength{\footskip}{0pt}
   - \setmainfont{Source Serif Pro}
   - \moderncvtheme[{color}]{{style}}
-  - \patchcmd{\makeletterclosing}{[3em]}{[1em]}{}{}
+  - \patchcmd{\makeletterclosing}{[3em]}{[0.5em]}{}{}
   - \setlength{\hintscolumnwidth}{2cm}
   - \setlength{\parskip}{0pt}
+  - \renewcommand{\namefont}{\fontsize{36}{38}\mdseries\upshape}
