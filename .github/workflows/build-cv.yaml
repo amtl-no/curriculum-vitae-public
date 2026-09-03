@@ -104,17 +104,22 @@ jobs:
           ${{ matrix.visibility == 'public' && '--public' || '' }} \
           --no-compile
 
-      - name: Upload .tex
+      - name: Prepare compile artifact
+        run: |
+          mkdir -p compile
+          cp "output/${{ steps.stem.outputs.value }}.tex" compile/
+          cp -r assets compile/
+
+      - name: Upload compile input
         uses: actions/upload-artifact@v7
         with:
           name: tex-${{ steps.stem.outputs.value }}
-          path: output/${{ steps.stem.outputs.value }}.tex
+          path: compile
           retention-days: 1
 
   # ── Compile: .tex → .pdf via Docker ─────────────────────────────────────
   # Downloads the .tex artifact and compiles via the TeX Live Docker image.
-  # Source Serif Pro is bundled in TeX Live — no font install needed.
-
+  # Uses a font bundled with the TeX Live Docker image.
   compile:
     needs: [matrix-setup, render]
     runs-on: ubuntu-latest
