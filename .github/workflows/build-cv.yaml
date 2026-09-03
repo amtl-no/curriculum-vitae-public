@@ -105,7 +105,7 @@ jobs:
           --no-compile
 
       - name: Upload .tex
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: tex-${{ steps.stem.outputs.value }}
           path: output/${{ steps.stem.outputs.value }}.tex
@@ -145,7 +145,7 @@ jobs:
           ${{ steps.stem.outputs.value }}.tex
 
       - name: Upload PDF
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: pdf-${{ steps.stem.outputs.value }}
           path: output/${{ steps.stem.outputs.value }}.pdf
@@ -168,7 +168,7 @@ jobs:
           path: output
 
       - name: Upload public bundle
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: cv-public
           path: output/cv_*_public_*.pdf
@@ -176,7 +176,7 @@ jobs:
         continue-on-error: true
 
       - name: Upload private bundle
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: cv-private
           path: output/cv_*_private_*.pdf
