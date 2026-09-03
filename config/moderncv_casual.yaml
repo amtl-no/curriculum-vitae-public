@@ -35,7 +35,7 @@ packages:
 theme:
   style: casual
   color: blue
-  
+
 photo:
   file: 'assets/photo.jpg'
   size: '48pt'
