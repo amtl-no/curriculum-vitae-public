@@ -30,7 +30,7 @@ jobs:
 
     steps:
       - name: 'Checkout'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: 'Yamllint ${{ matrix.target }}'
         uses: karancode/yamllint-github-action@master
         with:
