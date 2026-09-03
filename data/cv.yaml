@@ -243,7 +243,7 @@ experience:
             pipelines, and LLM workflows are each maintaned separately
             across dedicated workspaces via CI/CD, within the agency's
             Azure lakehous architecture (medallion model:
-            raw/refined/curated). 
+            raw/refined/curated).
         - >-
             Mastered, extended, and hardened the organisation's LLM
             analysis pipeline — applying it to new subject matter,
