@@ -48,7 +48,7 @@ pre_commands:
 commands:
   - \recomputelengths
   - \setlength{\footskip}{0pt}
-  - \setmainfont{TeX Gyre Pagella}
+  - \setmainfont{Libertinus Serif}
   - \moderncvtheme[{color}]{{style}}
   - \patchcmd{\makeletterclosing}{[3em]}{[0.5em]}{}{}
   - \setlength{\hintscolumnwidth}{2cm}
